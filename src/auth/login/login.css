@@ -28,11 +28,11 @@
 
 .block-2-1, .block-2-2, .block-2-3{
 	width: 70%;
-	border-radius: 5%;
+	border-radius: 2%;
 	margin: 2% 0;
 }
 
-.txt-4{text-align: justify; width:80%;}
+.txt-4{text-align: justify; width:80%; padding: 20px;}
 
 .form-1{
 	position: relative;
