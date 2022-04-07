@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter ,Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -34,19 +34,18 @@ function Dashboard({ children }){
 
 function App() {
   return (
-    <BrowserRouter >
-      <div className='App bg-darkblue-palette txt-color-smoke'>
-      <Header />
-      <Dashboard>
-        <Routes>
-          <Route component = { <Login /> }  path="/" exact />
-          <Route component = { <Login /> }  path="/login" />
-        <Route component = { <Register /> }  path="/register" />
-        </Routes>
-      </Dashboard>
-    </div>
-    </BrowserRouter>
-    
+    <BrowserRouter>
+  <div className='App bg-darkblue-palette txt-color-smoke'>
+    <Header />
+    <Dashboard>
+      <Routes>
+        <Route element = { <Login /> }  path="/" exact />
+        <Route element = { <Login /> }  path="/login" />
+        <Route element = { <Register /> }  path="/register" />
+      </Routes>
+    </Dashboard>
+  </div>
+  </BrowserRouter>
   );
 }
 
