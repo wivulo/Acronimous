@@ -52,7 +52,7 @@ html, body, #root{
 
 .caviar{ font-family: Caviar; }
 
-.fontawesome{ font-family: FontAwesome; }
+.fa{ font-family: FontAwesome; }
 
 .sans-serif{ font-family: "Arial", "Helvetica", "Roboto", Sans-serif; }
 
@@ -398,4 +398,8 @@ a:hover{
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
   gap: 25px;
   place-items: center;
+}
+
+.txt-center{
+  text-align: center;
 }

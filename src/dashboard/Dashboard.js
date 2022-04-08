@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 import Home from "./home/Home";
 import Profile from "./profile/Profile";
@@ -8,11 +8,15 @@ import messenger from '../assets/image/Menu Principal/messengerpng.png'
 import notification from '../assets/image/Menu Principal/notification.png'
 import help from '../assets/image/Menu Principal/help.png'
 import about from '../assets/image/Menu Principal/aboutUs.png'
-import { Figure } from 'react-bootstrap';
+import NotFound from '../shared/components/notFound';
+
+import logoutIcon from '../assets/image/logout.png';
+import { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function AsideBarItem({ children, path }) {
     let isClick = false;
-    function eventHandler(e){
+    function eventHandler(e) {
         e.target.classList.add("active")
     }
 
@@ -23,7 +27,16 @@ function AsideBarItem({ children, path }) {
     )
 }
 
-function AsideBar({user}) {
+function AsideBar({ user }) {
+    const navigate = useNavigate();
+
+    function ButtonClick(){
+        useEffect(() => {
+            localStorage.removeItem("user");
+            navigate("/login")
+        })
+    }
+
     return (
         <aside className='asideNavBar bg-darkblue-palette'>
             <div className='asideNavBar-content flex flex-column flex-h-center'>
@@ -59,7 +72,24 @@ function AsideBar({user}) {
                         </div>
                     </AsideBarItem>
                 </ul>
+
+                <div className='footer flex flex-column align-center justify-end'>
+                    <div className='footer-content-1'>
+                        <button className='btn txt-white flex flex-row' onClick={ButtonClick}>
+                        <img src={logoutIcon} /> <span>Terminar sessao</span>
+                        </button>
+                    </div>
+                    <div className='flex flex-row footer-content-1' >
+                        <p>Partilhar com:</p>
+                        <FontAwesomeIcon icon={["fal", "facebook"]} />
+                        <i className='fa fa-facebook'></i>
+                        <i className='fa fa-facebook'></i>
+                        <i className='fa fa-facebook'></i>
+                        <i className='fa fa-facebook'></i>
+                    </div>
+                </div>
             </div>
+
         </aside>
     )
 }
@@ -68,24 +98,25 @@ export default function Dashboard({ user }) {
 
     return (
         <div className="sheet sheet-1 flex flex-center" id="dashboard">
-            <AsideBar user={user.username}/>
+            <AsideBar user={user.username} />
             <section className='a-section dash-section'>
                 <Routes>
                     <Route element={<Home />} path='home' />
                     <Route element={<Profile />} path='profile' />
+                    <Route element={<NotFound />} path="*" />
                 </Routes>
             </section>
             <aside className='rightAsideBar flex flex-column justify-end'>
                 <div className='forum-item'>
                     <figure>
-                        <figcaption>
+                        <figcaption className='txt-center'>
                             Lorem ipsum dolar samer
                         </figcaption>
                     </figure>
                 </div>
                 <div className='forum-item'>
                     <figure>
-                        <figcaption>
+                        <figcaption className='txt-center'>
                             Dolar summit ammer
                         </figcaption>
                     </figure>

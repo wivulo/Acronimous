@@ -6,9 +6,8 @@ import Student from "./auth/studant/Student";
 import Contributor from "./auth/contributor/Contributor";
 import { useState, useEffect } from "react";
 import Loader from "./shared/components/Loader/Loader";
-import Home from "./dashboard/home/Home";
 import Dashboard from "./dashboard/Dashboard";
-import Profile from "./dashboard/profile/Profile";
+import NotFound from "./shared/components/notFound";
 
 
 function Header() {
@@ -67,6 +66,7 @@ function App() {
             <Route element={<Student />} path="/register/student" />
             <Route element={<Contributor />} path="/register/contributor" />
             <Route element={<Dashboard user={user} />} path={'/' + user.username + '/*'} />
+            <Route element={<NotFound />} path="*" />
           </Routes>
         </Section>
         <Loader loading={isLoading} />
