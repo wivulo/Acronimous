@@ -4,8 +4,12 @@ import Login from "./auth/login/login";
 import Register from "./auth/register/Register";
 import Student from "./auth/studant/Student";
 import Contributor from "./auth/contributor/Contributor";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Loader from "./shared/components/Loader/Loader";
+import Home from "./dashboard/home/Home";
+import Dashboard from "./dashboard/Dashboard";
+import Profile from "./dashboard/profile/Profile";
+
 
 function Header() {
   return (
@@ -26,7 +30,7 @@ function Header() {
   );
 }
 
-function Dashboard({ children }) {
+function Section({ children }) {
   return (
     <section className="a-section dashboard" id="dashboard">
       {children}
@@ -38,22 +42,33 @@ function App() {
   const [users, setUsers] = useState([
     { username: 'adm', password: 'adm' }
   ]);
+  const [user, setUser] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+
+  let checkUser = JSON.parse(localStorage.getItem("user"))
+  if(checkUser){
+    setUser(checkUser)
+  }
+
+  }, [])
 
   return (
     <BrowserRouter>
       <div className='App bg-darkblue-palette txt-color-smoke'>
         <Header />
-        <Dashboard>
-          <Routes>
-            <Route element={<Login users={users} loading={isLoading} onLoading={setIsLoading} />} path="/" exact />
-            <Route element={<Login users={users} loading={isLoading} onLoading={setIsLoading} />} path="/login" />
+        <Section>
+          <Routes>      
+            <Route element={<Login users={users} onLogin={setUser} onLoading={setIsLoading} />} path="/" exact />
+            <Route element={<Login users={users} onLogin={setUser} onLoading={setIsLoading} />} path="/login" />
             <Route element={<Register />} path="/register" />
             <Route element={<Student />} path="/register/student" />
             <Route element={<Contributor />} path="/register/contributor" />
+            <Route element={<Dashboard user={user} />} path={'/' + user.username + '/*'} />
           </Routes>
-        </Dashboard>
+        </Section>
         <Loader loading={isLoading} />
         <Outlet />
       </div>

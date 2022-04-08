@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import './login.css';
+import enterIcon from '../../assets/image/login_rounded_right_48px.png';
 
-export default function Login({ users, loading, onLoading }) {
+export default function Login({ users, onLogin, onLoading }) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
@@ -17,14 +18,22 @@ export default function Login({ users, loading, onLoading }) {
 		let user = users.find(user => user.username === username && user.password == password);
 		if (user) {
 			onLoading(true);
-			setTimeout(() => {
+			setTimeout(async () => {
 				if (user.username && user.password) {
-					console.log(user);
-					navigate('/home')
+					onLogin(user);
+					
+					let checkUser = JSON.parse(localStorage.getItem("user"));
+
+					if(checkUser && checkUser.username){
+						localStorage.removeItem("user");
+					}
+					
+					localStorage.setItem("user", JSON.stringify(user));
+
+					navigate('/'+user.username)
 				} else {
 					console.log('username or password wrong!')
 				}
-
 				onLoading(false)
 			}, 5000);
 		} else {
@@ -63,7 +72,9 @@ export default function Login({ users, loading, onLoading }) {
 
 							<div className="form-group flex flex-center">
 								<button type="submit" className="btn btn-radius fs-large" id="btn-login"
-									disabled={!validateForm()}>&#10162;</button>
+									disabled={!validateForm()}>
+										<img src={enterIcon} />
+									</button>
 							</div>
 
 						</form>
