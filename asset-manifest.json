@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/acronimous/static/css/main.06c7c007.css",
+    "main.js": "/acronimous/static/js/main.2babfe50.js",
+    "static/js/787.58e0d51f.chunk.js": "/acronimous/static/js/787.58e0d51f.chunk.js",
+    "static/media/FundoAcronimos.png": "/acronimous/static/media/FundoAcronimos.5abc94eab704f7716174.png",
+    "static/media/fontawesome-webfont.ttf": "/acronimous/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/Roboto-Bold.ttf": "/acronimous/static/media/Roboto-Bold.29d0602f3c74d2be2107.ttf",
+    "static/media/Roboto-Thin.ttf": "/acronimous/static/media/Roboto-Thin.bc405e852883934268b5.ttf",
+    "static/media/Roboto-Medium.ttf": "/acronimous/static/media/Roboto-Medium.987ab5111b87d67e6f6e.ttf",
+    "static/media/Roboto-Regular.ttf": "/acronimous/static/media/Roboto-Regular.04b605aa85f24816e3e6.ttf",
+    "static/media/CaviarDreams.ttf": "/acronimous/static/media/CaviarDreams.174b0a13f7e49c169450.ttf",
+    "static/media/Decomart.ttf": "/acronimous/static/media/Decomart.1b70128b0d4c0b565b98.ttf",
+    "static/media/icons8_book_shelf_1.ico": "/acronimous/static/media/icons8_book_shelf_1.043800619cb9e2785e42.ico",
+    "static/media/icons8_businessman_2.ico": "/acronimous/static/media/icons8_businessman_2.a38ec1739ab9318cfbd2.ico",
+    "static/media/icons8_classroom_1.ico": "/acronimous/static/media/icons8_classroom_1.773ea68f3593ddce2146.ico",
+    "static/media/icons8_discussion_forum_1.ico": "/acronimous/static/media/icons8_discussion_forum_1.8904b14c7f4dafb164c1.ico",
+    "static/media/icons8_einstein_2.ico": "/acronimous/static/media/icons8_einstein_2.952b5f2af7ddf45e2c8b.ico",
+    "static/media/icons8_light_on_2.ico": "/acronimous/static/media/icons8_light_on_2.79a005cde7172930f6cc.ico",
+    "static/media/icons8_settings.ico": "/acronimous/static/media/icons8_settings.7d6d76d4bbe9a5565e16.ico",
+    "static/media/icons8_student_male_1.ico": "/acronimous/static/media/icons8_student_male_1.6b7f159fa23ad0e94b80.ico",
+    "index.html": "/acronimous/index.html",
+    "main.06c7c007.css.map": "/acronimous/static/css/main.06c7c007.css.map",
+    "main.2babfe50.js.map": "/acronimous/static/js/main.2babfe50.js.map",
+    "787.58e0d51f.chunk.js.map": "/acronimous/static/js/787.58e0d51f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.06c7c007.css",
+    "static/js/main.2babfe50.js"
+  ]
+}
