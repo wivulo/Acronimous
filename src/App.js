@@ -44,6 +44,7 @@ function App() {
             <Route element={<Register />} path="/register" />
           </Routes>
         </Dashboard>
+        <Outlet />
       </div>
     </BrowserRouter>
   );
