@@ -1,0 +1,202 @@
+#loader{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 100;
+}
+
+div#loader.isLoading{
+    display: block;
+}
+
+#loader > div{
+    width: 100%;
+    height: 100%;
+}
+
+#loaderBody{
+    position: absolute;
+    width: 100%;
+    height: 656px;
+    background-color: #40000019;
+}
+
+#loader-information{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#loader-information p{
+    font-size: small;
+    user-select: none;
+}
+
+#loader-load{
+    display: block;
+    width: 100%;
+    margin: 5px auto;
+    padding: 0 5px;
+}
+
+.dot{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 5px 2px;
+}
+
+
+@keyframes lightGame-1{
+    0%{ background-color: #1F4E79;}
+    25%{ background-color: #1F4E79;}
+    50%{ background-color: #BDD7EE;}
+    75%{ background-color: #9DC3E6;}
+    100%{ background-color: #2E75B6;}  
+}
+
+@-webkit-keyframes  lightGame-1{
+    0%{ background-color: #1F4E79;}
+    25%{ background-color: #1F4E79;}
+    50%{ background-color: #BDD7EE;}
+    75%{ background-color: #9DC3E6;}
+    100%{ background-color: #2E75B6;}  
+}
+
+@-moz-keyframes  lightGame-1{
+    0%{ background-color: #1F4E79;}
+    25%{ background-color: #1F4E79;}
+    50%{ background-color: #BDD7EE;}
+    75%{ background-color: #9DC3E6;}
+    100%{ background-color: #2E75B6;}  
+}
+
+@-o-keyframes  lightGame-1{
+    0%{ background-color: #1F4E79;}
+    25%{ background-color: #1F4E79;}
+    50%{ background-color: #BDD7EE;}
+    75%{ background-color: #9DC3E6;}
+    100%{ background-color: #2E75B6;}  
+}
+
+.dot:nth-of-type(1){
+   animation: lightGame-1 ease-out 3s 0.1s infinite;
+}
+
+@keyframes lightGame-2{ 
+    0%{ background-color: #2E75B6;}
+    25%{ background-color: #2E75B6;}
+    50%{ background-color: #1F4E79;}
+    75%{ background-color: #BDD7EE;}
+    100%{ background-color: #9DC3E6;}
+   
+}
+
+@-webkit-keyframes  lightGame-2{
+    0%{ background-color: #2E75B6;}
+    25%{ background-color: #2E75B6;}
+    50%{ background-color: #1F4E79;}
+    75%{ background-color: #BDD7EE;}
+    100%{ background-color: #9DC3E6;}
+}
+
+@-moz-keyframes  lightGame-2{
+    0%{ background-color: #2E75B6;}
+    25%{ background-color: #2E75B6;}
+    50%{ background-color: #1F4E79;}
+    75%{ background-color: #BDD7EE;}
+    100%{ background-color: #9DC3E6;}
+}
+
+
+@-o-keyframes  lightGame-2{
+    0%{ background-color: #2E75B6;}
+    25%{ background-color: #2E75B6;}
+    50%{ background-color: #1F4E79;}
+    75%{ background-color: #BDD7EE;}
+    100%{ background-color: #9DC3E6;}
+}
+
+
+.dot:nth-of-type(2){
+    animation: lightGame-2 ease-out 3s 0.1s infinite;
+}
+
+@keyframes lightGame-3{
+    0%{ background-color: #9DC3E6;}
+   25%{ background-color: #9DC3E6;}
+   50%{ background-color: #2E75B6;}
+   75%{ background-color: #1F4E79;}
+   100%{ background-color: #BDD7EE;}
+}
+
+@-webkit-keyframes lightGame-3{
+0%{ background-color: #9DC3E6;}
+   25%{ background-color: #9DC3E6;}
+   50%{ background-color: #2E75B6;}
+   75%{ background-color: #1F4E79;}
+   100%{ background-color: #BDD7EE;}
+}
+
+@-moz-keyframes lightGame-3{
+0%{ background-color: #9DC3E6;}
+   25%{ background-color: #9DC3E6;}
+   50%{ background-color: #2E75B6;}
+   75%{ background-color: #1F4E79;}
+   100%{ background-color: #BDD7EE;}
+}
+
+@-o-keyframes lightGame-3{
+0%{ background-color: #9DC3E6;}
+   25%{ background-color: #9DC3E6;}
+   50%{ background-color: #2E75B6;}
+   75%{ background-color: #1F4E79;}
+   100%{ background-color: #BDD7EE;}
+}
+
+
+.dot:nth-of-type(3){
+    animation: lightGame-3 ease-out 3s 0.1s infinite;
+}
+
+@keyframes lightGame-4{
+    0%{ background-color: #BDD7EE;}
+    25%{ background-color: #BDD7EE;}
+    50%{ background-color: #9DC3E6;}
+    75%{ background-color: #2E75B6;}
+   100%{ background-color: #1F4E79;}
+}
+
+@-webkit-keyframes  lightGame-4{
+    0%{ background-color: #BDD7EE;}
+    25%{ background-color: #BDD7EE;}
+    50%{ background-color: #9DC3E6;}
+    75%{ background-color: #2E75B6;}
+   100%{ background-color: #1F4E79;}
+}
+
+@-moz-keyframes  lightGame-4{
+    0%{ background-color: #BDD7EE;}
+    25%{ background-color: #BDD7EE;}
+    50%{ background-color: #9DC3E6;}
+    75%{ background-color: #2E75B6;}
+   100%{ background-color: #1F4E79;}
+}
+
+@-o-keyframes  lightGame-4{
+    0%{ background-color: #BDD7EE;}
+    25%{ background-color: #BDD7EE;}
+    50%{ background-color: #9DC3E6;}
+    75%{ background-color: #2E75B6;}
+   100%{ background-color: #1F4E79;}
+}
+
+.dot:nth-of-type(4){
+    animation: lightGame-4 ease-out 3s 0.1s infinite;
+}

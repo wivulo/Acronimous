@@ -4,6 +4,8 @@ import Login from "./auth/login/login";
 import Register from "./auth/register/Register";
 import Student from "./auth/studant/Student";
 import Contributor from "./auth/contributor/Contributor";
+import { useState } from "react";
+import Loader from "./shared/components/Loader/Loader";
 
 function Header() {
   return (
@@ -33,19 +35,26 @@ function Dashboard({ children }) {
 }
 
 function App() {
+  const [users, setUsers] = useState([
+    { username: 'adm', password: 'adm' }
+  ]);
+
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <BrowserRouter>
       <div className='App bg-darkblue-palette txt-color-smoke'>
         <Header />
         <Dashboard>
           <Routes>
-            <Route element={<Login />} path="/" exact />
-            <Route element={<Login />} path="/login" />
+            <Route element={<Login users={users} loading={isLoading} onLoading={setIsLoading} />} path="/" exact />
+            <Route element={<Login users={users} loading={isLoading} onLoading={setIsLoading} />} path="/login" />
             <Route element={<Register />} path="/register" />
-            <Route element={ <Student /> } path="/register/student" />
-            <Route element={ <Contributor /> } path="/register/contributor" />
+            <Route element={<Student />} path="/register/student" />
+            <Route element={<Contributor />} path="/register/contributor" />
           </Routes>
         </Dashboard>
+        <Loader loading={isLoading} />
         <Outlet />
       </div>
     </BrowserRouter>

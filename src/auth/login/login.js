@@ -1,7 +1,37 @@
-import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import './login.css';
 
-export default function Login() {
+export default function Login({ users, loading, onLoading }) {
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
+
+	function validateForm() {
+		return username.length > 0 && password.length > 0;
+	}
+
+	function hendlerSubmit(e) {
+		e.preventDefault();
+
+		let user = users.find(user => user.username === username && user.password == password);
+		if (user) {
+			onLoading(true);
+			setTimeout(() => {
+				if (user.username && user.password) {
+					console.log(user);
+					navigate('/home')
+				} else {
+					console.log('username or password wrong!')
+				}
+
+				onLoading(false)
+			}, 5000);
+		} else {
+			console.log('username or password wrong!')
+		}
+	}
+
 
 	return (
 		<div className="sheet sheet-1 flex flex-center" id="login">
@@ -18,19 +48,22 @@ export default function Login() {
 					</div>
 
 					<div className="block-2-2 bg-darkblue-palette-3">
-						<form className="a-form form-1 flex flex-column flex-center">
+						<form className="a-form form-1 flex flex-column flex-center" onSubmit={hendlerSubmit}>
 							<div className="form-group">
-								<input type="text" id="ID" name="ID" className="form-control f-control-1" placeholder="Email ou Telefone" required />
+								<input type="text" id="ID" name="ID" className="form-control f-control-1" placeholder="Email ou Telefone" required
+									onChange={(e) => setUsername(e.target.value)} />
 							</div>
 
 							<div className="form-group">
-								<input type="password" id="password" name="password" className="form-control f-control-1" placeholder="Palavra Passe" required />
+								<input type="password" id="password" name="password" className="form-control f-control-1" placeholder="Palavra Passe" required
+									onChange={(e) => setPassword(e.target.value)} />
 							</div>
 
 							<div className="form-group showError flex flex-center"></div>
 
 							<div className="form-group flex flex-center">
-								<button type="submit" className="btn btn-radius fs-large" id="btn-login">&#10162;</button>
+								<button type="submit" className="btn btn-radius fs-large" id="btn-login"
+									disabled={!validateForm()}>&#10162;</button>
 							</div>
 
 						</form>
