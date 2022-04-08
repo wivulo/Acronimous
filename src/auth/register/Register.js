@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 import './register.css';
 
@@ -27,8 +27,8 @@ export default function Register() {
 				<section className="block-2 flex flex-column flex-center">
 					<div className="block-2-1 flex flex-row flex-center">
 
-						<ButtonLink imgSrc={studantIcon} href="/student" id="student" name="Estudante"/>
-						<ButtonLink imgSrc={contributorIcon} href="/contributor" id="businessman" name="Contribuente"/>
+						<ButtonLink imgSrc={studantIcon} href="/register/student" id="btn-student" name="Estudante"/>
+						<ButtonLink imgSrc={contributorIcon} href="/register/contributor" id="btn-businessman" name="Contribuente"/>
 
 					</div>
 
@@ -45,6 +45,8 @@ export default function Register() {
 					</div>
 				</section>
 			</div>
+
+			<Outlet />
 		</div>
 	);
 }

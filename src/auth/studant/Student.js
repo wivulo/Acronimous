@@ -1,35 +1,34 @@
 import { useState } from 'react';
-import './contributor.css';
-import contributorIcon from '../../assets/image/icons8_businessman_2.ico';
-import uploadImage from "../../assets/image/upload_icon.png";
+import './student.css';
+import studantIcon from '../../assets/image/icons8_student_male_1.ico';
 
 
 function RegisterItem({ children, item, activeItm }) {
     return (
-        <div className={
-            (item == activeItm) ? 'active item flex flex-center flex-column' : 'item flex flex-center flex-column'
-        }>
-            {children}
-        </div>
+    <div className={
+        (item == activeItm) ? 'active item flex flex-center flex-column' : 'item flex flex-center flex-column'
+    }>
+        {children}
+    </div>
     );
 }
 
 
-function Button({ content, eventHandler, isDisabled, id }) {
-    return (
+function Button({content, eventHandler, isDisabled, id}){
+    return(
         <button type='button' id={id} className={(isDisabled) ? 'disabled btn btn-radius btn-radius-neon' : 'btn btn-radius btn-radius-neon'}
-            onClick={eventHandler}>
+        onClick={eventHandler}>
             {content}
         </button>
     )
 }
 
-export default function Contributor() {
+export default function Student() {
 
     const [activeItem, setActiveItem] = useState(1);
 
     function slideNext() {
-        if (activeItem < 9) setActiveItem(activeItem + 1)
+        if(activeItem < 6) setActiveItem(activeItem + 1)
     }
 
     function slidePrev() {
@@ -46,7 +45,7 @@ export default function Contributor() {
                     <div className="block-2-1">
                         <span className="txt-4 fs-small-2">Dados Pessoas</span>
                         <div className="content-1 flex justify-end">
-                            <img className="img-1" src={contributorIcon} />
+                            <img className="img-1" src={studantIcon} />
                         </div>
 
                         <div className="content-2 flex flex-center">
@@ -105,47 +104,6 @@ export default function Contributor() {
                                     </RegisterItem>
 
                                     <RegisterItem item="6" activeItm={activeItem}>
-                                        <h5 className="txt txt-5">Insira o nº do seu documento de identificação.</h5>
-                                        <div className="form-group">
-                                            <input className="form-control f-control-1" type="text" name="identification" id="identification"
-                                                placeholder="Nº do Bilhete de identidade" />
-
-                                            <div id="upload-BI-section">
-                                                <div className="icon icon-1">
-                                                    <label htmlFor="BI">
-                                                        <img src={uploadImage} className="img-small" />
-                                                    </label>
-                                                </div>
-
-                                                <input type="text" name="fileselect" id="fileselect" className="form-control f-control-1" placeholder="Bilhete de identidade" readOnly />
-                                            </div>
-
-                                            <input className="form-control f-control-1" type="file" name="BI" id="BI" />
-                                        </div>
-                                    </RegisterItem>
-
-                                    <RegisterItem item="7" activeItm={activeItem}>
-                                        <h6 className="txt txt-5">Para a sua segurança, os seus dados bancários serão mantidos privados,
-                                            podendo ser acessado apenas por você.</h6>
-                                        <div className="form-group">
-                                            <select name="bank" id="bank" className="form-control f-control-1"></select>
-                                            <input type="text" className="form-control f-control-1" name="accountNumber" id="accountNumber" placeholder="Nº de conta" />
-                                            <input type="text" className="form-control f-control-1" name="accountIBAN" id="accountIBAN" placeholder="IBAN" />
-                                        </div>
-                                    </RegisterItem>
-
-                                    <RegisterItem item="8" activeItm={activeItem}>
-                                        <h6 className="txt txt-5">Para a sua segurança, os seus dados bancários serão mantidos privados,
-                                            podendo ser acessado apenas por você.</h6>
-                                        <div className="form-group">
-                                            <label htmlFor="subscribe">Subscrição/Mês<span className="color-red">*</span></label>
-                                            <select type="text" className="form-control f-control-1" name="subscribe" id="subscribe">
-                                                <option value="">__ seleciona uma subscrição __</option>
-                                            </select>
-                                        </div>
-                                    </RegisterItem>
-
-                                    <RegisterItem item="9" activeItm={activeItem}>
                                         <h5 className="txt txt-5">Cria uma Palavra-passe para sua conta.</h5>
                                         <div className="form-group">
                                             <input className="form-control f-control-1" type="password" name="password"
@@ -166,7 +124,7 @@ export default function Contributor() {
                                 <div className="content-2-2 flex flex-row justify-end">
                                     {/* <span className="btn btn-radius btn-radius-neon" id="prev" onClick={slidePrev}>voltar</span> */}
                                     <Button id="prev" eventHandler={slidePrev} content="voltar" isDisabled={(activeItem == 1) ? true : false} />
-                                    <Button id="next" eventHandler={slideNext} content="avancar" isDisabled={(activeItem == 9) ? true : false} />
+                                    <Button id="next" eventHandler={slideNext} content="avancar" isDisabled={(activeItem == 6) ? true : false} />
                                     <button type="submit" className="btn btn-radius btn-radius-neon"
                                         id="finalized">Finalizar</button>
                                 </div>

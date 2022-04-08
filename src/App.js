@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Login from "./auth/login/login";
 import Register from "./auth/register/Register";
+import Student from "./auth/studant/Student";
+import Contributor from "./auth/contributor/Contributor";
 
 function Header() {
   return (
@@ -42,6 +42,8 @@ function App() {
             <Route element={<Login />} path="/" exact />
             <Route element={<Login />} path="/login" />
             <Route element={<Register />} path="/register" />
+            <Route element={ <Student /> } path="/register/student" />
+            <Route element={ <Contributor /> } path="/register/contributor" />
           </Routes>
         </Dashboard>
         <Outlet />

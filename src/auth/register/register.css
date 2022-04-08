@@ -33,7 +33,7 @@
 	margin: 2% 0;
 }
 
-#student, #businessman{
+#btn-student, #btn-businessman{
 	width: 40%;
 	height: 80%;
 	margin: 5% 5%;
@@ -41,7 +41,7 @@
 	border-radius: 10px;
 }
 
-#student .icon, #businessman .icon{
+#btn-student .icon, #btn-businessman .icon{
 	height: 100px;
 	margin: 20px;
 }

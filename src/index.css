@@ -387,3 +387,8 @@ a:hover{
 	from{opacity: 0;}
 	to{opacity: 1;}
 }
+
+.disable{
+  user-select: none;
+  opacity: .3;
+}

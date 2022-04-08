@@ -1,0 +1,188 @@
+#contributor.sheet-1{width:100%;height:100%;}
+
+#contributor.block{
+  border: 2px solid #1B4367;
+}
+
+#contributor.block-1{width: 100%; height: 6%}
+
+#contributor.txt-3{
+  margin: 2px;padding: 0;
+  line-height: 2
+}
+
+#contributor.block-2{width: 100%; height: 94%; position: relative}
+
+#contributor.block-2-1{
+  width: 95%;
+  height: 95%;
+  border: 4px solid #000019
+}
+
+#contributor.txt-4{
+  position: absolute;
+  top: 0%;
+  left: 5%;
+}
+
+#contributor.content-1{
+  width: 100%;
+  height: 10%;
+}
+
+#contributor.content-2{
+  width: 100%;
+  height: 90%
+}
+
+#contributor.img-1{
+  width: 40px;
+  margin: 4px
+}
+
+#contributor.form{
+  width: 80%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#contributor.content-2-1{
+  width: 100%;
+  height: 85%;
+  position: relative
+}
+
+#contributor.item{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+}
+
+#contributor.item .form-group{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background-color: #000019;
+  padding: 30px 50px;
+}
+
+#contributor.item .form-group .form-control{
+  margin: 10px 0px
+}
+
+#day, #month, #year{
+	width: 18%;
+	margin: 0 3px;
+}
+
+#year{ width: 20%; }
+
+#BI{
+    width: 0;
+    height: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+}
+
+#upload-BI-section{
+    position: relative;
+    height: 43px;
+    margin: 10px 0;
+}
+
+input[readonly]#contributor.form-control{
+    position: absolute;
+    z-index: 1;
+    margin: 0;
+    top: 0;
+    left: 0;
+    background-color: #AFABAB;
+}
+
+#contributor.icon-1{
+    position: absolute;
+    z-index: 2;
+    top: 13px;
+    right: 0;
+}
+
+#contributor.icon-1 label{
+    cursor: pointer;
+}
+#contributor.btn-block{
+	width: 100%;
+	height: 80px;
+	margin: 5px 0;
+}
+
+#contributor.txt-8, #contributor.txt-5{
+	text-align: center;
+}
+
+#contributor.txt-7{ font-size: .8em; }
+
+#contributor.item.active{
+  z-index: 2;
+  opacity: 0;
+  animation: fadein .4s .1s ease-in forwards
+}
+
+#contributor.hidden{
+  opacity: 1;
+  animation: fadeout .2s .1s ease-out forwards
+}
+
+@keyframes fadein{
+  from{opacity: 0}
+  to{opacity: 1}
+}
+
+@keyframes fadeout{
+  from{opacity: 1}
+  to{opacity: 0}
+}
+
+#contributor.txt-5{height: 20%}
+
+#contributor.content-2-2{
+  width: 100%;
+  height: 10%;
+  background-color: transparent
+}
+
+#contributor.btn{margin-left: 10px; padding: 5px 15px}
+
+#finalized{
+  display: none
+}
+
+#b-next{
+	display: none;
+}
+
+#addBanckAccount{
+	display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	#contributor .block{
+		width: 80%;
+		height: 40%;
+	}
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+	#contributor .block{
+		width: 50%;
+  	    height: 70%;
+	}
+}
+
+@media (min-height: 327px) and (max-height: 400px){
+	#contributor .block{height:100%;}
+	#contributor .block-1{height:10%;}
+	#contributor .block-2{height:90%;}
+}
