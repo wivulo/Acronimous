@@ -15,7 +15,7 @@ export default function Login({ users, onLogin, onLoading }) {
 	function hendlerSubmit(e) {
 		e.preventDefault();
 
-		let user = users.find(user => user.username === username && user.password == password);
+		let user = users.find(user => user.username === username && user.password === password);
 		if (user) {
 			onLoading(true);
 			setTimeout(async () => {
@@ -73,7 +73,7 @@ export default function Login({ users, onLogin, onLoading }) {
 							<div className="form-group flex flex-center">
 								<button type="submit" className="btn btn-radius fs-large" id="btn-login"
 									disabled={!validateForm()}>
-										<img src={enterIcon} />
+										<img src={enterIcon} alt="login button" />
 									</button>
 							</div>
 

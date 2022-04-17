@@ -6,7 +6,7 @@ import studantIcon from '../../assets/image/icons8_student_male_1.ico';
 function RegisterItem({ children, item, activeItm }) {
     return (
     <div className={
-        (item == activeItm) ? 'active item flex flex-center flex-column' : 'item flex flex-center flex-column'
+        (item === activeItm) ? 'active item flex flex-center flex-column' : 'item flex flex-center flex-column'
     }>
         {children}
     </div>
@@ -32,7 +32,7 @@ export default function Student() {
     }
 
     function slidePrev() {
-        if (activeItem != 1) setActiveItem(activeItem - 1)
+        if (activeItem !== 1) setActiveItem(activeItem - 1)
     }
 
     return (
@@ -45,7 +45,7 @@ export default function Student() {
                     <div className="block-2-1">
                         <span className="txt-4 fs-small-2">Dados Pessoas</span>
                         <div className="content-1 flex justify-end">
-                            <img className="img-1" src={studantIcon} />
+                            <img className="img-1" src={studantIcon} alt="icon estudante" />
                         </div>
 
                         <div className="content-2 flex flex-center">
@@ -123,8 +123,8 @@ export default function Student() {
 
                                 <div className="content-2-2 flex flex-row justify-end">
                                     {/* <span className="btn btn-radius btn-radius-neon" id="prev" onClick={slidePrev}>voltar</span> */}
-                                    <Button id="prev" eventHandler={slidePrev} content="voltar" isDisabled={(activeItem == 1) ? true : false} />
-                                    <Button id="next" eventHandler={slideNext} content="avancar" isDisabled={(activeItem == 6) ? true : false} />
+                                    <Button id="prev" eventHandler={slidePrev} content="voltar" isDisabled={(activeItem === 1) ? true : false} />
+                                    <Button id="next" eventHandler={slideNext} content="avancar" isDisabled={(activeItem === 6) ? true : false} />
                                     <button type="submit" className="btn btn-radius btn-radius-neon"
                                         id="finalized">Finalizar</button>
                                 </div>

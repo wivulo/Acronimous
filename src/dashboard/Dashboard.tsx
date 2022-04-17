@@ -1,14 +1,14 @@
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import './Dashboard.css';
-import Home from "./home/Home";
-import Profile from "./profile/Profile";
+import Home from "./home/Home.tsx";
+import Profile from "./profile/Profile.tsx";
 import userIcon from '../assets/image/user.png';
 import home from '../assets/image/Menu Principal/home.png'
 import messenger from '../assets/image/Menu Principal/messengerpng.png'
 import notification from '../assets/image/Menu Principal/notification.png'
 import help from '../assets/image/Menu Principal/help.png'
 import about from '../assets/image/Menu Principal/aboutUs.png'
-import NotFound from '../shared/components/notFound';
+import NotFound from '../shared/components/notFound.tsx';
 
 import logoutIcon from '../assets/image/logout.png';
 import { useEffect } from 'react';
@@ -43,32 +43,32 @@ function AsideBar({ user }) {
                 <ul className='menu'>
                     <AsideBarItem path="/profile">
                         <div className='flex flex-center'>
-                            <img className="icon profileLink" src={userIcon} />
+                            <img className="icon profileLink" src={userIcon} alt="go to profile"/>
                         </div>
                     </AsideBarItem>
                     <AsideBarItem content="" path='home'>
                         <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={home} /><span>Pagina Inicial</span>
+                            <img className="icon asideBarIcon" src={home} alt="home link"/><span>Pagina Inicial</span>
                         </div>
                     </AsideBarItem>
                     <AsideBarItem path="messenger">
                         <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={messenger} /><span>Mensagens</span>
+                            <img className="icon asideBarIcon" src={messenger} alt="messenger link"/><span>Mensagens</span>
                         </div>
                     </AsideBarItem>
                     <AsideBarItem path="notification">
                         <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={notification} /><span>Notificacoes</span>
+                            <img className="icon asideBarIcon" src={notification} alt="notification link"/><span>Notificacoes</span>
                         </div>
                     </AsideBarItem>
                     <AsideBarItem path="help">
                         <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={help} /><span>Ajuda</span>
+                            <img className="icon asideBarIcon" src={help} alt="help link"/><span>Ajuda</span>
                         </div>
                     </AsideBarItem>
                     <AsideBarItem path="about">
                         <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={about} /><span>Sobre nos</span>
+                            <img className="icon asideBarIcon" src={about} alt="about link"/><span>Sobre nos</span>
                         </div>
                     </AsideBarItem>
                 </ul>
@@ -76,7 +76,7 @@ function AsideBar({ user }) {
                 <div className='footer flex flex-column align-center justify-end'>
                     <div className='footer-content-1'>
                         <button className='btn txt-white flex flex-row' onClick={ButtonClick}>
-                        <img src={logoutIcon} /> <span>Terminar sessao</span>
+                        <img src={logoutIcon} alt="logout button" /> <span>Terminar sessao</span>
                         </button>
                     </div>
                     <div className='flex flex-row footer-content-1' >

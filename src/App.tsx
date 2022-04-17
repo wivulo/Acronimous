@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
-import Login from "./auth/login/login";
-import Register from "./auth/register/Register";
-import Student from "./auth/studant/Student";
-import Contributor from "./auth/contributor/Contributor";
+import Login from "./auth/login/login.tsx";
+import Register from "./auth/register/Register.tsx";
+import Student from "./auth/studant/Student.tsx";
+import Contributor from "./auth/contributor/Contributor.tsx";
 import { useState, useEffect } from "react";
-import Loader from "./shared/components/Loader/Loader";
-import Dashboard from "./dashboard/Dashboard";
-import NotFound from "./shared/components/notFound";
+import Loader from "./shared/components/Loader/Loader.tsx";
+import Dashboard from "./dashboard/Dashboard.tsx";
+import NotFound from "./shared/components/notFound.tsx";
 
 
 function Header() {

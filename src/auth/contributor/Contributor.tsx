@@ -7,7 +7,7 @@ import uploadImage from "../../assets/image/upload_icon.png";
 function RegisterItem({ children, item, activeItm }) {
     return (
         <div className={
-            (item == activeItm) ? 'active item flex flex-center flex-column' : 'item flex flex-center flex-column'
+            (item === activeItm) ? 'active item flex flex-center flex-column' : 'item flex flex-center flex-column'
         }>
             {children}
         </div>
@@ -33,7 +33,7 @@ export default function Contributor() {
     }
 
     function slidePrev() {
-        if (activeItem != 1) setActiveItem(activeItem - 1)
+        if (activeItem !== 1) setActiveItem(activeItem - 1)
     }
 
     return (
@@ -46,7 +46,7 @@ export default function Contributor() {
                     <div className="block-2-1">
                         <span className="txt-4 fs-small-2">Dados Pessoas</span>
                         <div className="content-1 flex justify-end">
-                            <img className="img-1" src={contributorIcon} />
+                            <img className="img-1" src={contributorIcon} alt="contribuente icon"/>
                         </div>
 
                         <div className="content-2 flex flex-center">
@@ -113,7 +113,7 @@ export default function Contributor() {
                                             <div id="upload-BI-section">
                                                 <div className="icon icon-1">
                                                     <label htmlFor="BI">
-                                                        <img src={uploadImage} className="img-small" />
+                                                        <img src={uploadImage} className="img-small" alt="upload" />
                                                     </label>
                                                 </div>
 
@@ -165,8 +165,8 @@ export default function Contributor() {
 
                                 <div className="content-2-2 flex flex-row justify-end">
                                     {/* <span className="btn btn-radius btn-radius-neon" id="prev" onClick={slidePrev}>voltar</span> */}
-                                    <Button id="prev" eventHandler={slidePrev} content="voltar" isDisabled={(activeItem == 1) ? true : false} />
-                                    <Button id="next" eventHandler={slideNext} content="avancar" isDisabled={(activeItem == 9) ? true : false} />
+                                    <Button id="prev" eventHandler={slidePrev} content="voltar" isDisabled={(activeItem === 1) ? true : false} />
+                                    <Button id="next" eventHandler={slideNext} content="avancar" isDisabled={(activeItem === 9) ? true : false} />
                                     <button type="submit" className="btn btn-radius btn-radius-neon"
                                         id="finalized">Finalizar</button>
                                 </div>

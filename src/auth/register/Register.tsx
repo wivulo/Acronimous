@@ -10,7 +10,7 @@ function ButtonLink({ imgSrc, href, id, name }) {
 	return (
 		<div id={id} className="bg-darkblue-palette-3 flex flex-column flex-centet">
 			<button className="btn flex flex-column flex-center">
-				<img className="icon img-1" src={imgSrc} />
+				<img className="icon img-1" src={imgSrc} alt={name +' icon'}/>
 				<Link className="flex flex-column flex-center a-txt fs-normal f-bold" to={href}> {name}</Link>
 			</button>
 		</div>
