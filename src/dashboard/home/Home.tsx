@@ -12,7 +12,7 @@ function HomeItem({icon, text, path}){
 	return (
 		<Link to={path}>
 			<div className='home-item flex flex-row flex-center'>
-				<img src={icon}/>
+				<img src={icon} alt={text}/>
 				<span>{text}</span>
 			</div>
 		</Link>
