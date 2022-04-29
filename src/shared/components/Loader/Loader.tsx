@@ -1,8 +1,8 @@
 import './Loader.css'
 
-export default function Loader({ loading }) {
+export default function Loader({ loading }: any) {
     return (
-      <div id="loader" className={(loading) ? 'isLoading' : 0 }>
+      <div id="loader" className={(loading) ? 'isLoading' : '' }>
         <div className="flex flex-column flex-center">
           <div id="loader-information" >
             <p> A carregar... </p>

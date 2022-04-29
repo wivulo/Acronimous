@@ -1,5 +1,6 @@
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import './Dashboard.css';
+import { useEffect } from 'react';
 import Home from "./home/Home";
 import Profile from "./profile/Profile";
 import userIcon from '../assets/image/user.png';
@@ -11,9 +12,7 @@ import about from '../assets/image/Menu Principal/aboutUs.png'
 import NotFound from '../shared/components/notFound';
 
 import logoutIcon from '../assets/image/logout.png';
-import { MouseEventHandler, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Settings } from 'http2';
 
 interface iAsideBarItemProps{
     children: any;
