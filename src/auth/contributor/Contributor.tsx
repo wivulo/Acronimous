@@ -2,9 +2,9 @@ import { useState } from 'react';
 import './contributor.css';
 import contributorIcon from '../../assets/image/icons8_businessman_2.ico';
 import uploadImage from "../../assets/image/upload_icon.png";
+import { RegisterItemProps, ButtonProps } from '../interfaces/Auth.interfaces'
 
-
-function RegisterItem({ children, item, activeItm }) {
+function RegisterItem({ children, item, activeItm }: RegisterItemProps) {
     return (
         <div className={
             (item === activeItm) ? 'active item flex flex-center flex-column' : 'item flex flex-center flex-column'
@@ -14,8 +14,7 @@ function RegisterItem({ children, item, activeItm }) {
     );
 }
 
-
-function Button({ content, eventHandler, isDisabled, id }) {
+function Button({ content, eventHandler, isDisabled, id }: ButtonProps) {
     return (
         <button type='button' id={id} className={(isDisabled) ? 'disabled btn btn-radius btn-radius-neon' : 'btn btn-radius btn-radius-neon'}
             onClick={eventHandler}>
@@ -53,7 +52,7 @@ export default function Contributor() {
                             <form className="form flex flex-column" acceptCharset="utf-8">
                                 <div className="content-2-1">
 
-                                    <RegisterItem item="1" activeItm={activeItem}>
+                                    <RegisterItem item={1} activeItm={activeItem}>
                                         <h5 className="txt txt-5">Qual é o seu nome?</h5>
                                         <div className="form-group">
                                             <input className="form-control f-control-1" type="text" name="name" id="name"
@@ -63,7 +62,7 @@ export default function Contributor() {
                                         </div>
                                     </RegisterItem>
 
-                                    <RegisterItem item="2" activeItm={activeItem}>
+                                    <RegisterItem item={2} activeItm={activeItem}>
                                         <h5 className="txt txt-5">Por qual nome deseja ser tratado?</h5>
                                         <div className="form-group">
                                             <label htmlFor="username">Nome de usuario</label>
@@ -72,19 +71,19 @@ export default function Contributor() {
                                         </div>
                                     </RegisterItem>
 
-                                    <RegisterItem item="3" activeItm={activeItem}>
+                                    <RegisterItem item={3} activeItm={activeItem}>
                                         <h5 className="txt txt-5">Data de nascimento?</h5>
                                         <div className="form-group flex flex-row flex-center date-group">
                                             <input className="form-control f-control-1 birthDate" type="number" name="day" id="day"
-                                                maxLength="2" placeholder="DD" />
+                                                maxLength={2} placeholder="DD" />
                                             <input className="form-control f-control-1 birthDate" type="number" name="month"
-                                                id="month" maxLength="2" placeholder="MM" />
+                                                id="month" maxLength={2} placeholder="MM" />
                                             <input className="form-control f-control-1 birthDate" type="number" name="year"
-                                                id="year" minLength="4" maxLength="4" placeholder="YYYY" />
+                                                id="year" minLength={4} maxLength={4} placeholder="YYYY" />
                                         </div>
                                     </RegisterItem>
 
-                                    <RegisterItem item="4" activeItm={activeItem}>
+                                    <RegisterItem item={4} activeItm={activeItem}>
                                         <h5 className="txt txt-5">diga-nos o seu endereço de email e número</h5>
                                         <div className="form-group">
                                             <input className="form-control f-control-1" type="email" name="email" id="email"
@@ -94,7 +93,7 @@ export default function Contributor() {
                                         </div>
                                     </RegisterItem>
 
-                                    <RegisterItem item="5" activeItm={activeItem}>
+                                    <RegisterItem item={5} activeItm={activeItem}>
                                         <h5 className="txt txt-5">diga-nos a sua Área de formação</h5>
                                         <div className="form-group">
                                             <select name="formation" id="formation" className="form-control f-control-1">
@@ -104,7 +103,7 @@ export default function Contributor() {
                                         </div>
                                     </RegisterItem>
 
-                                    <RegisterItem item="6" activeItm={activeItem}>
+                                    <RegisterItem item={6} activeItm={activeItem}>
                                         <h5 className="txt txt-5">Insira o nº do seu documento de identificação.</h5>
                                         <div className="form-group">
                                             <input className="form-control f-control-1" type="text" name="identification" id="identification"
@@ -124,7 +123,7 @@ export default function Contributor() {
                                         </div>
                                     </RegisterItem>
 
-                                    <RegisterItem item="7" activeItm={activeItem}>
+                                    <RegisterItem item={7} activeItm={activeItem}>
                                         <h6 className="txt txt-5">Para a sua segurança, os seus dados bancários serão mantidos privados,
                                             podendo ser acessado apenas por você.</h6>
                                         <div className="form-group">
@@ -134,18 +133,18 @@ export default function Contributor() {
                                         </div>
                                     </RegisterItem>
 
-                                    <RegisterItem item="8" activeItm={activeItem}>
+                                    <RegisterItem item={8} activeItm={activeItem}>
                                         <h6 className="txt txt-5">Para a sua segurança, os seus dados bancários serão mantidos privados,
                                             podendo ser acessado apenas por você.</h6>
                                         <div className="form-group">
                                             <label htmlFor="subscribe">Subscrição/Mês<span className="color-red">*</span></label>
-                                            <select type="text" className="form-control f-control-1" name="subscribe" id="subscribe">
+                                            <select className="form-control f-control-1" name="subscribe" id="subscribe">
                                                 <option value="">__ seleciona uma subscrição __</option>
                                             </select>
                                         </div>
                                     </RegisterItem>
 
-                                    <RegisterItem item="9" activeItm={activeItem}>
+                                    <RegisterItem item={9} activeItm={activeItem}>
                                         <h5 className="txt txt-5">Cria uma Palavra-passe para sua conta.</h5>
                                         <div className="form-group">
                                             <input className="form-control f-control-1" type="password" name="password"

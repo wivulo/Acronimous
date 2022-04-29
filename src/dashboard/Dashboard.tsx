@@ -1,33 +1,40 @@
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import './Dashboard.css';
-import Home from "./home/Home.tsx";
-import Profile from "./profile/Profile.tsx";
+import Home from "./home/Home";
+import Profile from "./profile/Profile";
 import userIcon from '../assets/image/user.png';
 import home from '../assets/image/Menu Principal/home.png'
 import messenger from '../assets/image/Menu Principal/messengerpng.png'
 import notification from '../assets/image/Menu Principal/notification.png'
 import help from '../assets/image/Menu Principal/help.png'
 import about from '../assets/image/Menu Principal/aboutUs.png'
-import NotFound from '../shared/components/notFound.tsx';
+import NotFound from '../shared/components/notFound';
 
 import logoutIcon from '../assets/image/logout.png';
-import { useEffect } from 'react';
+import { MouseEventHandler, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Settings } from 'http2';
 
-function AsideBarItem({ children, path }) {
+interface iAsideBarItemProps{
+    children: any;
+    path: string;
+}
+
+function AsideBarItem({ children, path }: iAsideBarItemProps) {
     let isClick = false;
-    function eventHandler(e) {
-        e.target.classList.add("active")
+    function eventHandler() {
+        isClick = true;
     }
 
     return (
-        <li className={(isClick) ? 'active asideBar-item' : 'asideBar-item'}>
-            <Link to={path} onClick={eventHandler}> {children} </Link>
+        <li className={(isClick) ? 'active asideBar-item' : 'asideBar-item'}
+        onClick={() => eventHandler()}>
+            <Link to={path}> {children} </Link>
         </li>
     )
 }
 
-function AsideBar({ user }) {
+function AsideBar({ user }: any) {
     const navigate = useNavigate();
 
     function ButtonClick(){
@@ -46,7 +53,7 @@ function AsideBar({ user }) {
                             <img className="icon profileLink" src={userIcon} alt="go to profile"/>
                         </div>
                     </AsideBarItem>
-                    <AsideBarItem content="" path='home'>
+                    <AsideBarItem path='home'>
                         <div className='flex flex-row'>
                             <img className="icon asideBarIcon" src={home} alt="home link"/><span>Pagina Inicial</span>
                         </div>
@@ -94,7 +101,7 @@ function AsideBar({ user }) {
     )
 }
 
-export default function Dashboard({ user }) {
+export default function Dashboard({ user } : any) {
 
     return (
         <div className="sheet sheet-1 flex flex-center" id="dashboard">

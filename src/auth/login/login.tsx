@@ -2,8 +2,16 @@ import { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import './login.css';
 import enterIcon from '../../assets/image/login_rounded_right_48px.png';
+import * as React from 'react';
 
-export default function Login({ users, onLogin, onLoading }) {
+interface iLogin {
+	users: any;
+	onLogin: Function;
+	onLoading:Function;
+}
+
+
+export default function Login({ users, onLogin, onLoading }: iLogin) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
@@ -12,17 +20,17 @@ export default function Login({ users, onLogin, onLoading }) {
 		return username.length > 0 && password.length > 0;
 	}
 
-	function hendlerSubmit(e) {
+	function hendlerSubmit(e:any) {
 		e.preventDefault();
 
-		let user = users.find(user => user.username === username && user.password === password);
+		let user = users.find((user:any) => user.username === username && user.password === password);
 		if (user) {
 			onLoading(true);
 			setTimeout(async () => {
 				if (user.username && user.password) {
 					onLogin(user);
 					
-					let checkUser = JSON.parse(localStorage.getItem("user"));
+					let checkUser = JSON.parse(localStorage.getItem("user")!);
 
 					if(checkUser && checkUser.username){
 						localStorage.removeItem("user");

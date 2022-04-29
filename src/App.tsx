@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
-import Login from "./auth/login/login.tsx";
-import Register from "./auth/register/Register.tsx";
-import Student from "./auth/studant/Student.tsx";
-import Contributor from "./auth/contributor/Contributor.tsx";
+import Login from "./auth/login/login";
+import Register from "./auth/register/Register";
+import Student from "./auth/studant/Student";
+import Contributor from "./auth/contributor/Contributor";
 import { useState, useEffect } from "react";
-import Loader from "./shared/components/Loader/Loader.tsx";
-import Dashboard from "./dashboard/Dashboard.tsx";
-import NotFound from "./shared/components/notFound.tsx";
+import Loader from "./shared/components/Loader/Loader";
+import Dashboard from "./dashboard/Dashboard";
+import NotFound from "./shared/components/notFound";
 
 
 function Header() {
@@ -29,7 +29,7 @@ function Header() {
   );
 }
 
-function Section({ children }) {
+function Section({ children }: any) {
   return (
     <section className="a-section dashboard" id="dashboard">
       {children}
@@ -37,17 +37,22 @@ function Section({ children }) {
   );
 }
 
+interface User{
+  username: string;
+  password: string;
+}
+
 function App() {
   const [users, setUsers] = useState([
     { username: 'adm', password: 'adm' }
   ]);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<User>();
 
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
 
-  let checkUser = JSON.parse(localStorage.getItem("user"))
+  let checkUser = JSON.parse(localStorage.getItem("user")!)
   if(checkUser){
     setUser(checkUser)
   }
@@ -60,12 +65,12 @@ function App() {
         <Header />
         <Section>
           <Routes>      
-            <Route element={<Login users={users} onLogin={setUser} onLoading={setIsLoading} />} path="/" exact />
+            <Route element={<Login users={users} onLogin={setUser} onLoading={setIsLoading} />} path="/" />
             <Route element={<Login users={users} onLogin={setUser} onLoading={setIsLoading} />} path="/login" />
             <Route element={<Register />} path="/register" />
             <Route element={<Student />} path="/register/student" />
             <Route element={<Contributor />} path="/register/contributor" />
-            <Route element={<Dashboard user={user} />} path={'/' + user.username + '/*'} />
+            <Route element={<Dashboard user={user} />} path={'/' + user?.username + '/*'} />
             <Route element={<NotFound />} path="*" />
           </Routes>
         </Section>

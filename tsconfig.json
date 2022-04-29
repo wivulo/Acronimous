@@ -1,14 +1,35 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "jsx": "react",
+        "baseUrl": "./src",
+        "target": "es5",
+        "lib": [
+            "dom",
+            "DOM.Iterable",
+            "ESNext"
+        ],
+        "sourceMap": true,
+        "allowJs": true,
+        "skipLibCheck": true,
         "allowSyntheticDefaultImports": true,
+        "noFallthroughCasesInSwitch": true,
+        "module":"ESNext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
+        "jsx": "react-jsx",
+        "rootDirs": [
+            "src"
+        ],
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "strict": true,
     },
-    "include": ["src/*"],
+    "include": [
+        "src",
+        "index.d.ts"
+    ],
     "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
-      ]
+        "node_modules"
+    ]
 }

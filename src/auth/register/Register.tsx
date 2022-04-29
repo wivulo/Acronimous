@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 import './register.css';
@@ -6,7 +7,7 @@ import studantIcon from '../../assets/image/icons8_student_male_1.ico';
 import contributorIcon from '../../assets/image/icons8_businessman_2.ico';
 
 
-function ButtonLink({ imgSrc, href, id, name }) {
+function ButtonLink({ imgSrc, href, id, name }: any) {
 	return (
 		<div id={id} className="bg-darkblue-palette-3 flex flex-column flex-centet">
 			<button className="btn flex flex-column flex-center">

@@ -8,7 +8,13 @@ import studyTips from '../../assets/image/Menu Principal/icons8_discussion_forum
 import settings from '../../assets/image/Menu Principal/icons8_settings.ico'
 import sugestion from '../../assets/image/Menu Principal/icons8_light_on_2.ico'
 
-function HomeItem({icon, text, path}){
+interface iHomeItemProps{
+	icon: string;
+	text: string;
+	path: string
+}
+
+function HomeItem({icon, text, path}: iHomeItemProps){
 	return (
 		<Link to={path}>
 			<div className='home-item flex flex-row flex-center'>
