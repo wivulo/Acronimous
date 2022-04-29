@@ -1,0 +1,285 @@
+#library{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 35.6px 106.8px 1fr;
+    grid-row-gap: 0px
+  }
+  
+  .library-item{
+    width: 100%;
+  }
+  
+  #library .header-library{
+    grid-template-columns: repeat(2, 1fr)
+  }
+  
+  #library .icon-1{
+    height: 100%;
+  }
+  
+  #library .icon-1 span{
+    display: block;
+    width: 15px;
+    height: 15px;
+    padding: 0 10px
+  }
+  
+  .searchBar-library{
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+    "a a a b b b"
+    "c d . . . ."
+  }
+  
+  .cell{
+    width: 100%;
+    
+  }
+  
+  .searchBar-library .cel-1{
+    /*grid-column-start: 1;
+    grid-column-end: 4;*/
+    grid-area: a
+  }
+  
+  .searchBar-library .cel-2{
+   /* grid-column-start: 4;
+    grid-column-end: 7*/
+    grid-area: b
+  }
+  
+  .searchBar-library .cel-1, .searchBar-library .cel-2{
+    border-bottom: 1px solid #464DA180
+  }
+  
+  .searchBar-library .cel-3{grid-area: c}
+  .searchBar-library .cel-4{grid-area: d}
+  
+  .searchBar-library .cel-3, .searchBar-library .cel-4{
+    border: 1px solid #464DA180
+  }
+  
+  #library .txt-1{
+    color: #464DA1;
+  }
+  
+  #library input.search{
+    width: 70%;
+    height: 70%;
+    border: 1px solid white;
+    color: #000;
+  }
+  
+  #library .searchBar-library .btn-search{
+    height: 70%;
+  }
+  
+  #library .searchBar-library .btn-filter{
+    color: #eee;
+    width: 80%;
+    height: 90%;
+    font-size: 1.1em
+  }
+  
+  .library-CategoryList {
+    grid-template-columns: repeat(auto-fit, minmax(15.25rem, 1fr));
+    gap: 20px;
+    place-items: center;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  
+  .library-CategoryList .categoryItem{
+    display: flex;
+    width: 100%;
+    height: 280px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center
+  }
+  
+  .scienceAreaViewer{
+    grid-template-rows: 50px 40px 40px 1fr;
+    grid-row-gap: 7px;
+    padding-top: 10px;
+    place-items: center;
+  }
+  .row{width: 80%}
+  
+  .scienceAreaViewer .btn-filter{
+    width: 100px;
+    height: 40px;
+    color: #eee;
+    margin: 0 5px;
+    border-radius: 10px
+  }
+  
+  .scienceAreaViewer .row-2{
+    border-top: 1px solid #464DA180
+  }
+  
+  .scienceAreaViewer .row-2 .btn-filter{
+    width: 120px;
+    margin: 0;
+    border-radius: 0
+  }
+  
+  .scienceAreaViewer .row-2 .btn-filter img{
+    display: inline-block;
+    width: 22px;
+    margin: 0 5px;
+  }
+  
+  .btn-filter span{margin: 0 5px}
+  
+  .scienceAreaViewer .btn-filter.active{
+    background-color: #3B45B7
+  }
+  
+  .scienceAreaViewer .row-3 .form-control{
+    width: 40%;
+    height: 40px;
+    border-bottom: 1px solid #464DA180
+  }
+  
+  .scienceAreaViewer .row-3 .form-control input.search, .scienceAreaViewer .row-3 .form-control .btn-search{
+    height: 100%
+  }
+  
+  .scienceAreaViewer .scienceAreaItems{
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto-fit, 1fr);
+    gap: 20px;
+    place-items: center;
+    overflow: hidden;
+    overflow-y: auto;
+    justify-items: start;
+  }
+  
+  .scienceAreaViewer .scienceAreaItems .areaItem{
+    width: 90%;
+    height: 90px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 70px 20px;
+    grid-template-areas: 
+    "a b b b b c"
+    "d d e f f f";
+    margin: 5px 0;
+    background-color: #060928;
+    border-radius: 10px;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, .5);
+  }
+  
+  .areaItem .icon, .areaItem .image{
+    grid-area: a;
+  }
+  
+  .areaItem .description{
+    grid-area: b;
+    padding: 0 10px;
+  }
+  
+  .areaItem .description .item-autor{
+    opacity: .6;
+    margin: 10px 0
+  }
+  
+  .areaItem .menu-content{
+    grid-area: c;
+    
+  }
+  
+  .areaItem .menu-content #btn-open-menu{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 10px 5px;
+  }
+  
+  .areaItem .menu-content .menu{
+    position: absolute;
+    display: none;
+    background-color: #3852B5;
+    border-radius: 20px;
+    overflow: hidden
+  }
+  
+  .areaItem .menu-content .menu.show{
+    display: inline-block
+  }
+  
+  .areaItem .menu-content .menu.hide{
+    display: none;
+  }
+  
+  .areaItem .menu-content .menu ul{
+    list-style: none;
+    margin: 10px 0;
+  }
+  
+  .areaItem .menu-content .menu ul li{
+    padding: 10px;
+    height: 30px;
+  }
+  
+  .areaItem .menu-content .menu ul li:hover{
+    background-color: #3852B57D
+  }
+  
+  .areaItem .menu-content .menu ul #btn-close{
+    position: absolute;
+    top: 0;
+    right: 5px;
+    opacity: .7;
+    transform: scale(1);
+    transition: all linear .1s;
+    z-index: 10
+  }
+  
+  .areaItem .menu-content .menu ul #btn-close:hover{
+    opacity: 1;
+    transform: scale(1.1);
+    transition: all linear .2s
+  }
+  
+  .areaItem .commentNumber{
+    grid-area: d;
+  }
+  
+  .areaItem .commentNumber p{
+    color: #212A83;
+    margin: 0 15px;
+  }
+  
+  .areaItem .archiveSize{
+    grid-area: e;
+  }
+  
+  .areaItem .archiveSize .size{
+    display: inline-block;
+    padding: 2px 10px;
+    border: 1px solid #464DA180;
+    font-size: .7em;
+    color: green
+  }
+  
+  .areaItem .reactionViewer{
+    grid-area: f;
+    border: 1px solid #464DA180;
+    gap: 5px
+  }
+  
+  .areaItem .reactionViewer div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .areaItem .reactionViewer img{
+    width: 15px;
+    margin: 1px;
+  }
+  

@@ -3,6 +3,7 @@ import './Dashboard.css';
 import { useEffect } from 'react';
 import Home from "./home/Home";
 import Profile from "./profile/Profile";
+import { Library } from './library/Library'
 import userIcon from '../assets/image/user.png';
 import home from '../assets/image/Menu Principal/home.png'
 import messenger from '../assets/image/Menu Principal/messengerpng.png'
@@ -12,7 +13,6 @@ import about from '../assets/image/Menu Principal/aboutUs.png'
 import NotFound from '../shared/components/notFound';
 
 import logoutIcon from '../assets/image/logout.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface iAsideBarItemProps{
     children: any;
@@ -85,13 +85,14 @@ function AsideBar({ user }: any) {
                         <img src={logoutIcon} alt="logout button" /> <span>Terminar sessao</span>
                         </button>
                     </div>
-                    <div className='flex flex-row footer-content-1' >
+                    <div className='flex flex-column footer-content-1' >
                         <p>Partilhar com:</p>
-                        <FontAwesomeIcon icon={["fal", "facebook"]} />
+                        <div className='flex flex-row flex-center fs-medium'>
                         <i className='fa fa-facebook'></i>
-                        <i className='fa fa-facebook'></i>
-                        <i className='fa fa-facebook'></i>
-                        <i className='fa fa-facebook'></i>
+                        <i className='fa fa-twitter'></i>
+                        <i className='fa fa-whatsapp'></i>
+                        <i className='fa fa-instagram'></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,6 +110,7 @@ export default function Dashboard({ user } : any) {
                 <Routes>
                     <Route element={<Home />} path='home' />
                     <Route element={<Profile />} path='profile' />
+                    <Route element={<Library />} path='library' />
                     <Route element={<NotFound />} path="*" />
                 </Routes>
             </section>

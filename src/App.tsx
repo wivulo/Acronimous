@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
+import './fontawesome.css'
 import Login from "./auth/login/login";
 import Register from "./auth/register/Register";
 import Student from "./auth/studant/Student";

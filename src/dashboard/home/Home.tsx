@@ -29,7 +29,7 @@ export default function Home() {
 
 	return (
 		<div className="sheet sheet-2 grid" id="home">
-			<HomeItem icon={library} text="Biblioteca" path="library" />
+			<HomeItem icon={library} text="Biblioteca" path="../library" />
 			<HomeItem icon={forum} text="forum" path="forum" />
 			<HomeItem icon={classroom} text="Turmas" path="classroom" />
 			<HomeItem icon={packageMoney} text="Carteira" path="packageMoney" />
