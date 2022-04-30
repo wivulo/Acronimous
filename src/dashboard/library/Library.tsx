@@ -78,11 +78,11 @@ export const Library: react.FC = () => {
                 </div>
 
                 <div className="cell cel-3 flex flex-center">
-                    <button type="button" className="btn-rised btn-filter" id="btnTitulo">Titulo</button>
+                    <button type="button" className="btn-rised btn-filter">Titulo</button>
                 </div>
 
                 <div className="cell cel-4 flex flex-center">
-                    <button type="button" className="btn-rised btn-filter" id="btnAutor">Autor</button>
+                    <button type="button" className="btn-rised btn-filter">Autor</button>
                 </div>
             </div>
 
