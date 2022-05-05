@@ -4,7 +4,8 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: 35.6px 106.8px 1fr;
-    grid-row-gap: 0px
+    grid-row-gap: 0px;
+    padding: 0 5px;
   }
   
   .library-item{
@@ -28,7 +29,7 @@
   
   .searchBar-library{
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 50px 40px;
     grid-template-areas: 
     "a a a b b b"
     "c d . . . ."
@@ -36,7 +37,6 @@
   
   .cell{
     width: 100%;
-    
   }
   
   .searchBar-library .cel-1{
@@ -63,7 +63,7 @@
   }
   
   #library .txt-1{
-    color: #464DA1;
+    color: #2E5B7B;
   }
   
   #library input.search{
@@ -85,7 +85,7 @@
   }
   
   .library-CategoryList {
-    grid-template-columns: repeat(auto-fit, minmax(15.25rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(12.8rem, 1fr));
     gap: 20px;
     place-items: center;
     overflow: hidden;
@@ -98,7 +98,8 @@
     height: 280px;
     border-radius: 50%;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    transform: scale(0.9);
   }
   
   .scienceAreaViewer{

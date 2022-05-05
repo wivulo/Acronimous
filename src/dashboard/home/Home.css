@@ -1,5 +1,9 @@
-.sheet-2{
+#home.sheet-2{
+    width: 100%;
     margin: 50px 20px;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 25px;
+    place-items: center;
 }
 
 .home-item{

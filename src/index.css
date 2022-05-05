@@ -167,6 +167,14 @@ a:hover{
   text-align: center;
 }
 
+.f-control{
+  border: none;
+  background-color: #AFABAB;
+  border-radius: 10px;
+  outline: none;
+  padding: 5px 10px;
+}
+
 .f-control-1{
   width: 100%;
   border: none;
@@ -199,6 +207,15 @@ a:hover{
   transition: all ease-out .3s;
 }
 
+.btn-rised.border-1{
+  border: 1px solid #464DA180;
+}
+
+.btn-rised.border-1:hover{
+  background-color: #464DA180;
+}
+
+
 .btn-radius-neon{
   background-color: #163552;
   color: #5B9BD5;
@@ -220,6 +237,15 @@ a:hover{
   height: 50px;
   color: #ddd;
   border-radius: 50%;
+}
+
+.btn-circle{
+  display: flex;
+  border-radius: 50%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  color: currentColor;
 }
 
 .btn-floating:hover, .floating-1:hover{
@@ -247,16 +273,14 @@ a:hover{
 
 .flex{
   display: flex;
-  flex-wrap: wrap;
 }
 
 .flex-row{
-  flex-direction: row
+  flex-flow: row wrap;
 }
 
 .flex-column{
   flex-direction: column;
-  flex-wrap: nowrap;
 }
 
 .flex-v-center{
@@ -279,9 +303,13 @@ a:hover{
 	align-items: center;
 }
 
+.justify-start{ justify-content: start }
+
 .justify-end{
 	justify-content: flex-end;
 }
+
+.justify-center{ justify-content: center }
 
 .flex-center{
   justify-content: center;
@@ -302,6 +330,9 @@ a:hover{
   width: 50px;
   height: 50px;
 }
+
+.mt-1{margin-top: 5px}
+.mt-2{margin-top: 10px}
 
 /*Index css*/
 /*Index style*/
@@ -392,13 +423,8 @@ a:hover{
   list-style: none;
 }
 
-.grid{
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-  gap: 25px;
-  place-items: center;
-}
+.grid{ display: grid }
+.grid-center{ place-content: center}
 
 .txt-center{
   text-align: center;
