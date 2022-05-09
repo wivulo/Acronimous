@@ -139,8 +139,24 @@ const ScienceItem = ({itemIcon, itemIconAlt, itemTitle, itemAutor, itemSize, com
     </div>
   );
 }
+interface iSchienceAreaProps{
+  data: iSchienceItemProps[]
+}
 
-const SchenceArea: react.FC = ({data}: any) => {
+const SchenceArea = ({data}: iSchienceAreaProps) => {
+
+  let items = data.map(item => {
+    return <ScienceItem 
+    itemIcon={item.itemIcon}
+    itemIconAlt={item.itemIconAlt}
+    itemAutor={item.itemAutor}
+    itemTitle={item.itemTitle}
+    itemSize={item.itemSize}
+    interactions={item.interactions}
+    commentNumber={item.commentNumber}
+    />
+  })
+
   return (
     <div className="scienceAreaViewer grid">
       <div className="row row-1 flex flex-row flex-center">
@@ -170,6 +186,7 @@ const SchenceArea: react.FC = ({data}: any) => {
       </div>
 
       <div className="row row-4 grid scienceAreaItems">
+        {items}
       </div>
 
     </div>
@@ -181,7 +198,9 @@ export const Library: react.FC = () => {
 
   const [title, setTitle] = useState<string>()
   let url: any;
-  (title) ? url = removeAccentsAndSpecialCharacters(title).toLowerCase() : 0;
+  if(title) 
+    url = removeAccentsAndSpecialCharacters(title).toLowerCase();
+  
   let handout: Array<iSchienceItemProps> = [];
 
   data.handout.map((item) => {
