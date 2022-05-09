@@ -110,7 +110,7 @@ export default function Dashboard({ user } : any) {
                 <Routes>
                     <Route element={<Home />} path='home' />
                     <Route element={<Profile />} path='profile' />
-                    <Route element={<Library />} path='library' />
+                    <Route element={<Library />} path='library/*' />
                     <Route element={<NotFound />} path="*" />
                 </Routes>
             </section>

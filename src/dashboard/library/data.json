@@ -1,0 +1,34 @@
+{
+    "handout": [
+        {
+            "id": 0,
+            "type": "handout",
+            "Title": "Titulo 1",
+            "Autor": "Walter Ivulo",
+            "Size": 5,
+            "CommentNumber": 10,
+            "interactions": {
+                "downloads": 0,
+                "visualization": 0,
+                "like": 0,
+                "unlike": 0,
+                "addedToFavorites": 0
+            }
+        },
+        {
+            "id":2,
+            "type": "handout",
+            "Title": "Titulo 2",
+            "Autor": "Walter Ivulo",
+            "Size": 4,
+            "CommentNumber": 3,
+            "interactions": {
+                "downloads": 0,
+                "visualization": 0,
+                "like": 0,
+                "unlike": 0,
+                "addedToFavorites": 0
+            }
+        }
+    ]
+}
