@@ -1,18 +1,14 @@
 import react, { Dispatch, SetStateAction } from 'react';
-import { Route, Routes, useNavigate, useParams } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import './Library.css'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import guaranteeIcon from 'assets/image/Biblioteca/icons8_guarantee.ico'
 import buyIcon from "assets/image/Biblioteca/icons8_buy_2.ico"
 import paidIcon from "assets/image/Biblioteca/icons8_paid_2.ico"
 import bookletIcon from "assets/image/Biblioteca/icons8_spiral_bound_booklet_3.ico"
-import downloadIcon from "assets/image/Biblioteca/icons8_download.ico"
-import viewIcon from "assets/image/Biblioteca/icons8_eye_2.ico"
-import likeIcon from "assets/image/Biblioteca/icons8_thumbs_up.ico"
-import unlikeIcon from "assets/image/Biblioteca/icons8_thumbs_down.ico"
-import starIcon from "assets/image/Biblioteca/icons8_star.ico"
 import { removeAccentsAndSpecialCharacters } from "../../shared/services/removeAcAndCaracEs"
 import data from "./data.json";
+import { ScienceItem, iSchienceItemProps, iInteractions } from "./SchienceItem"
 
 
 interface iButtonProps {
@@ -56,113 +52,64 @@ const LibraryCategorys = ({ setTitlechange }: iLibraryCategoryProps) => {
   )
 }
 
-interface iInteractions{
-  downloads: number;
-  visualization: number;
-  like: number;
-  unlike: number;
-  addedToFavorites: number;
-}
-
-interface iSchienceItemProps{
-  itemIcon: any;
-  itemIconAlt: string;
-  itemTitle: string;
-  itemAutor: string;
-  itemSize: number;
-  commentNumber: number;
+interface iData {
+  id: number;
+  type: string;
+  Title: string;
+  Autor: string;
+  Size: number;
+  CommentNumber: number;
   interactions: iInteractions;
 }
 
-const ScienceItem = ({itemIcon, itemIconAlt, itemTitle, itemAutor, itemSize, commentNumber, interactions}: iSchienceItemProps) => {
-  return (
-    <div className="areaItem grid">
-      <div className="icon flex flex-center">
-        <img src={itemIcon} alt={itemIconAlt} />
-      </div>
-
-      <div className="description flex flex-column">
-        <p className="txt item-title fs-normal f-600 mt-1">{itemTitle}</p>
-        <small className="txt item-autor">{itemAutor}</small>
-      </div>
-
-      <div className="menu-content flex justify-end align-center">
-        <button type="button" className="btn fs-medium" id="btn-open-menu"><span className="fa fa-ellipsis-v txt-color-smoke"></span> </button>
-
-        <div className="menu">
-          <ul>
-            <button type="button" className="btn-circle" id="btn-close">x</button>
-
-            <li>Ler</li>
-            <li>Ver capa</li>
-            <li>Baixar</li>
-            <li>Adicionar aos favoritos</li>
-            <li>Detalhes</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="commentNumber">
-        <p className="txt">{commentNumber} comment</p>
-      </div>
-
-      <div className="archiveSize flex justify-end">
-        <p className="txt size">{itemSize}MB</p>
-      </div>
-
-      <div className="reactionViewer flex flex-row flex-center">
-        <div className="downloadNumber">
-          <img src={downloadIcon} alt="download icon" />
-          <small>{interactions.downloads}</small>
-        </div>
-
-        <div className="viewNumber">
-          <img src={viewIcon} alt="view icon" />
-          <small>{interactions.visualization}</small>
-        </div>
-
-        <div className="likeNumber">
-          <img src={likeIcon} alt="like icon" />
-          <small>{interactions.like}</small>
-        </div>
-
-        <div className="unlikeNumber">
-          <img src={unlikeIcon} alt="unlike icon" />
-          <small>{interactions.unlike}</small>
-        </div>
-
-        <div className="starNumber">
-          <img src={starIcon} alt="star icon" />
-          <small>{interactions.addedToFavorites}</small>
-        </div>
-      </div>
-    </div>
-  );
-}
-interface iSchienceAreaProps{
-  data: iSchienceItemProps[]
+interface iSchienceAreaProps {
+  data: iData[];
 }
 
-const SchenceArea = ({data}: iSchienceAreaProps) => {
+interface iIcon{
+  file: any;
+  alt: string
+}
 
-  let items = data.map(item => {
-    return <ScienceItem 
-    itemIcon={item.itemIcon}
-    itemIconAlt={item.itemIconAlt}
-    itemAutor={item.itemAutor}
-    itemTitle={item.itemTitle}
-    itemSize={item.itemSize}
-    interactions={item.interactions}
-    commentNumber={item.commentNumber}
+const SchenceArea = ({ data }: iSchienceAreaProps) => {
+
+  const [items, setItems] = useState<iData[]>()
+
+  function btnFilterClicktHandler(e: React.SyntheticEvent){
+    document.querySelectorAll('.active')?.forEach(elem => {
+      elem.classList.remove('active')
+    })
+
+    e.currentTarget.classList.add('active');
+  }
+
+
+  data.map(item => {
+    let icon: iIcon = bookletIcon;
+    
+    if(item.type === 'handout'){
+      icon = {
+        file: bookletIcon,
+        alt: 'Apostila icon'
+      }
+    }
+    return <ScienceItem
+      itemIcon={icon.file}
+      itemIconAlt={icon.alt}
+      itemAutor={item.Autor}
+      itemTitle={item.Title}
+      itemSize={item.Size}
+      interactions={item.interactions}
+      commentNumber={item.CommentNumber}
     />
   })
 
   return (
     <div className="scienceAreaViewer grid">
       <div className="row row-1 flex flex-row flex-center">
-        <button type="button" className="btn-rised border-1 btn-filter active">Apostilas</button>
-        <button type="button" className="btn-rised border-1 btn-filter">Livros</button>
-        <button type="button" className="btn-rised border-1 btn-filter">Artigos</button>
+        <button type="button" className='btn-rised border-1 btn-filter' onClick={(e) => {btnFilterClicktHandler(e); }} id="handout">Apostilas</button>
+        <button type="button" className='btn-rised border-1 btn-filter' onClick={(e) => {btnFilterClicktHandler(e); }} id="book">Livros</button>
+        <button type="button" className='btn-rised border-1 btn-filter' onClick={(e) => {btnFilterClicktHandler(e); }} id="article">Artigos</button>
       </div>
 
       <div className="row row-2 flex flex-row justify-start">
@@ -197,29 +144,10 @@ const SchenceArea = ({data}: iSchienceAreaProps) => {
 export const Library: react.FC = () => {
 
   const [title, setTitle] = useState<string>()
-  let url: any;
-  if(title) 
-    url = removeAccentsAndSpecialCharacters(title).toLowerCase();
-  
-  let handout: Array<iSchienceItemProps> = [];
 
-  data.handout.map((item) => {
-    handout.push({
-      itemIcon: bookletIcon,
-      itemTitle: item.Title,
-      itemAutor: item.Autor,
-      itemSize: item.Size,
-      itemIconAlt: "apostila icon",
-      commentNumber: item.Size,
-      interactions:{
-        downloads: item.interactions.downloads,
-        visualization: item.interactions.visualization,
-        like: item.interactions.like,
-        unlike: item.interactions.like,
-        addedToFavorites: item.interactions.addedToFavorites
-      }
-    })
-  });
+  let url: any;
+  if (title)
+    url = removeAccentsAndSpecialCharacters(title).toLowerCase();
 
   return (
     <div className="a-section a-sheet txt-color-smoke" id="library">
@@ -258,7 +186,7 @@ export const Library: react.FC = () => {
 
       <div className="library-item library-body grid">
         <Routes>
-          <Route path={url} element={<SchenceArea data={handout} />} />
+          <Route path={url} element={<SchenceArea data={data.library}  />}/>
           <Route path="/" element={<LibraryCategorys setTitlechange={setTitle} />} />
         </Routes>
       </div>
