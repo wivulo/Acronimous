@@ -1,7 +1,6 @@
 {
-    "library": [
-        {
-            "id": 0,
+    "library": [{
+            "id": 1,
             "type": "handout",
             "Title": "Titulo 1",
             "Autor": "Walter Ivulo",
@@ -13,10 +12,11 @@
                 "like": 0,
                 "unlike": 0,
                 "addedToFavorites": 0
-            }
+            },
+	    "state": "free"
         },
         {
-            "id":2,
+            "id": 2,
             "type": "handout",
             "Title": "Titulo 2",
             "Autor": "Walter Ivulo",
@@ -28,7 +28,40 @@
                 "like": 0,
                 "unlike": 0,
                 "addedToFavorites": 0
-            }
+            },
+	    "state": "free"
+        },
+        {
+            "id": 3,
+            "type": "handout",
+            "Title": "Titulo 3",
+            "Autor": "Walter Ivulo",
+            "Size": 10,
+            "CommentNumber": 3,
+            "interactions": {
+                "downloads": 0,
+                "visualization": 0,
+                "like": 0,
+                "unlike": 0,
+                "addedToFavorites": 0
+            },
+	    "state": "buy"
+        },
+	{
+            "id": 1,
+            "type": "book",
+            "Title": "Titulo 4",
+            "Autor": "Eclater Ivulo",
+            "Size": 5,
+            "CommentNumber": 10,
+            "interactions": {
+                "downloads": 2,
+                "visualization": 0,
+                "like": 0,
+                "unlike": 0,
+                "addedToFavorites": 0
+            },
+	    "state": "free"
         }
     ]
 }

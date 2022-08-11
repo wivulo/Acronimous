@@ -103,6 +103,9 @@ a:hover{
   background-color: #163552
 }
 
+.color-white{
+  color: #fff !important;
+}
 .txt-color-ocean{
   color: #5B9BD5;
 }
@@ -118,6 +121,7 @@ a:hover{
 .a-txt{
   word-wrap: break-word;
 }
+
 
 .fs-small{
 	font-size: .8em;
@@ -277,6 +281,10 @@ a:hover{
 
 .flex-row{
   flex-flow: row wrap;
+}
+
+.nowrap{
+  flex-wrap: nowrap !important
 }
 
 .flex-column{

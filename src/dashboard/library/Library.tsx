@@ -1,7 +1,6 @@
-import react, { Dispatch, SetStateAction } from 'react';
+import react, { Dispatch, SetStateAction, useState, useRef, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import './Library.css'
-import React, { useState } from 'react'
 import guaranteeIcon from 'assets/image/Biblioteca/icons8_guarantee.ico'
 import buyIcon from "assets/image/Biblioteca/icons8_buy_2.ico"
 import paidIcon from "assets/image/Biblioteca/icons8_paid_2.ico"
@@ -60,6 +59,7 @@ interface iData {
   Size: number;
   CommentNumber: number;
   interactions: iInteractions;
+  state: string;
 }
 
 interface iSchienceAreaProps {
@@ -71,57 +71,65 @@ interface iIcon{
   alt: string
 }
 
+interface iFilterButtonProps{
+  ident: string;
+  content?: string;
+  action: any;
+  icon?: string;
+  alt?: string;
+}
+
+const FilterButton = (props: iFilterButtonProps)  =>{
+  return (
+    <button type="button" className='btn-rised border-1 btn-filter' onClick={(e) => props.action(e)} id={props.ident}>
+      {props.content}
+    </button>
+  )
+}
+
+const FlexFilterButton = (props: iFilterButtonProps)  =>{
+  return (
+    <button type="button" className='btn-rised border-1 btn-filter flex flex-center' onClick={(e) => props.action(e)} id={props.ident}>
+      <img src={props.icon} alt={props.alt}/>
+    </button>
+  )
+}
+
+let prevFilter: iData[]
 const SchenceArea = ({ data }: iSchienceAreaProps) => {
+  const [items, setItems] = useState<iData[]>(data)
+  let empty: iData[]
 
-  const [items, setItems] = useState<iData[]>()
+  useEffect( () => {
+    setTimeout(() => document.querySelector('#handout')?.classList.add('active'))
+  }, [])
 
-  function btnFilterClicktHandler(e: React.SyntheticEvent){
-    document.querySelectorAll('.active')?.forEach(elem => {
-      elem.classList.remove('active')
-    })
-
+  const filterAction = (e: React.SyntheticEvent) => {
+    document.querySelectorAll('.active').forEach(elem => elem?.classList.remove('active'))
     e.currentTarget.classList.add('active');
+    
+    let match = data.filter(potentialMatch =>  potentialMatch.type === e.currentTarget.id)
+    prevFilter = match
+    setItems(match || empty)
   }
 
-
-  data.map(item => {
-    let icon: iIcon = bookletIcon;
-    
-    if(item.type === 'handout'){
-      icon = {
-        file: bookletIcon,
-        alt: 'Apostila icon'
-      }
-    }
-    return <ScienceItem
-      itemIcon={icon.file}
-      itemIconAlt={icon.alt}
-      itemAutor={item.Autor}
-      itemTitle={item.Title}
-      itemSize={item.Size}
-      interactions={item.interactions}
-      commentNumber={item.CommentNumber}
-    />
-  })
+  const filterAction2 = (e: React.SyntheticEvent) =>{
+    let match = prevFilter.filter(potentialMatch =>  potentialMatch.state === e.currentTarget.id)
+    setItems(match || empty)
+  }
 
   return (
     <div className="scienceAreaViewer grid">
       <div className="row row-1 flex flex-row flex-center">
-        <button type="button" className='btn-rised border-1 btn-filter' onClick={(e) => {btnFilterClicktHandler(e); }} id="handout">Apostilas</button>
-        <button type="button" className='btn-rised border-1 btn-filter' onClick={(e) => {btnFilterClicktHandler(e); }} id="book">Livros</button>
-        <button type="button" className='btn-rised border-1 btn-filter' onClick={(e) => {btnFilterClicktHandler(e); }} id="article">Artigos</button>
+	<FilterButton ident="handout" content="Apostilas" action={filterAction}/>
+	<FilterButton ident="book" content="Livros" action={filterAction}/>
+	<FilterButton ident="article" content="Artigos" action={filterAction}/>
       </div>
 
       <div className="row row-2 flex flex-row justify-start">
-        <button type="button" className="btn-rised border-1 btn-filter flex flex-center">
-          <img src={guaranteeIcon} alt="gratis icon" /> Grátis
-        </button>
-        <button type="button" className="btn-rised border-1 btn-filter flex flex-center">
-          <img src={buyIcon} alt="a venda icon" /> À venda
-        </button>
-        <button type="button" className="btn-rised border-1 btn-filter flex flex-center">
-          <img src={paidIcon} alt="pago icon" />  Pago
-        </button>
+	<FlexFilterButton icon={guaranteeIcon} alt="gratis icon" ident="free" action={filterAction2}/>
+	<FlexFilterButton icon={buyIcon} alt="a venda icon" ident="buy" action={filterAction2}/>        
+	<FlexFilterButton icon={paidIcon} alt="pago icon" ident="paid" action={filterAction2}/>
       </div>
 
       <div className="row row-3 flex justify-end">
@@ -133,7 +141,25 @@ const SchenceArea = ({ data }: iSchienceAreaProps) => {
       </div>
 
       <div className="row row-4 grid scienceAreaItems">
-        {items}
+	{
+	 items.map(item => {
+	  let icon: iIcon = {
+	    file: bookletIcon,
+	    alt: 'Apostilas'
+	  };
+
+	  return <ScienceItem
+	    key={item.id}
+      	    itemIcon={icon.file}
+       	    itemIconAlt={icon.alt}
+      	    itemAutor={item.Autor}
+       	    itemTitle={item.Title}
+      	    itemSize={item.Size}
+     	    interactions={item.interactions}
+      	    commentNumber={item.CommentNumber}
+    	    />
+	  })
+	}
       </div>
 
     </div>

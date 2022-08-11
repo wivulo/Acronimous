@@ -1,6 +1,6 @@
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import './Dashboard.css';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Home from "./home/Home";
 import Profile from "./profile/Profile";
 import { Library } from './library/Library'
@@ -11,81 +11,117 @@ import notification from '../assets/image/Menu Principal/notification.png'
 import help from '../assets/image/Menu Principal/help.png'
 import about from '../assets/image/Menu Principal/aboutUs.png'
 import NotFound from '../shared/components/notFound';
-
+import {useSpring, animated} from 'react-spring'
 import logoutIcon from '../assets/image/logout.png';
 
+
 interface iAsideBarItemProps{
-    children: any;
     path: string;
+    imageSrc: any;
+    alt: string;
+    description?: string;
+    style?: any;
+    isMenuCollapse?: boolean;
 }
 
-function AsideBarItem({ children, path }: iAsideBarItemProps) {
+function AsideBarItem({ path, imageSrc, alt, description, style, isMenuCollapse }: iAsideBarItemProps) {
     let isClick = false;
+    let classes = [
+      'asideBar-item flex',
+      'flex flex-row nowrap',
+    ]
+
+    if(!description || isMenuCollapse) {
+      classes = classes.map(item => item = item.concat(' flex-center'))
+    }
+
     function eventHandler() {
         isClick = true;
+
+	if(isClick) classes.concat(' .active')
     }
 
     return (
-        <li className={(isClick) ? 'active asideBar-item' : 'asideBar-item'}
-        onClick={() => eventHandler()}>
-            <Link to={path}> {children} </Link>
+        <li className={classes[0]} onClick={eventHandler}>
+            <Link to={path}>
+	      <div className={classes[1]}>
+		<img className={!description? 'icon asideBarIcon profileLink':'icon asideBarIcon'} src={imageSrc} alt={alt}/>
+		{description &&  <AnimatedSpan style={style} content={description} />}
+	      </div>
+	    </Link>
         </li>
     )
 }
 
+const AnimatedSpan = ({style, content}: any) => {
+  return <animated.span className='nobreak' style={{...style}}>{content}</animated.span>
+}
+
 function AsideBar({ user }: any) {
     const navigate = useNavigate();
+    const asideRef = useRef<HTMLBaseElement>(null)
+    const [width, setWidth] = useState<number>(window.innerWidth)
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
 
-    function ButtonClick(){
-        useEffect(() => {
-            localStorage.removeItem("user");
-            navigate("/login")
-        })
+    useEffect(() => {
+      const resize = () => setWidth(window.innerWidth)
+
+	if(width <= 850) {
+	  setIsCollapsed(true)
+	}
+	 
+      window.addEventListener('resize', resize)
+    }, [])
+    
+    const ButtonClick = () => {
+	localStorage.removeItem("user");
+	navigate("/login")
     }
 
+    const slideAnimationProps = useSpring({
+      width: isCollapsed ? 60 : 180,
+    })
+    
+    const fade = useSpring({
+      display: isCollapsed ? 'none' : 'inline',
+      fontSize: isCollapsed ? 0 : 14,
+      opacity: isCollapsed ? 0 : 1,
+    })
+
+    const fade2 = useSpring({
+      display: isCollapsed ? 'none' : 'inline',
+      fontSize: isCollapsed ? 0 : 13,
+      opacity: isCollapsed ? 0 : 1,
+    })
+
     return (
-        <aside className='asideNavBar bg-darkblue-palette'>
+      <animated.aside className='asideNavBar bg-darkblue-palette'  style={{...slideAnimationProps}} ref={asideRef}>
             <div className='asideNavBar-content flex flex-column flex-h-center'>
                 <ul className='menu'>
-                    <AsideBarItem path="/profile">
-                        <div className='flex flex-center'>
-                            <img className="icon profileLink" src={userIcon} alt="go to profile"/>
-                        </div>
-                    </AsideBarItem>
-                    <AsideBarItem path='home'>
-                        <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={home} alt="home link"/><span>Pagina Inicial</span>
-                        </div>
-                    </AsideBarItem>
-                    <AsideBarItem path="messenger">
-                        <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={messenger} alt="messenger link"/><span>Mensagens</span>
-                        </div>
-                    </AsideBarItem>
-                    <AsideBarItem path="notification">
-                        <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={notification} alt="notification link"/><span>Notificacoes</span>
-                        </div>
-                    </AsideBarItem>
-                    <AsideBarItem path="help">
-                        <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={help} alt="help link"/><span>Ajuda</span>
-                        </div>
-                    </AsideBarItem>
-                    <AsideBarItem path="about">
-                        <div className='flex flex-row'>
-                            <img className="icon asideBarIcon" src={about} alt="about link"/><span>Sobre nos</span>
-                        </div>
-                    </AsideBarItem>
+		  { (width <= 850) &&
+		  <li className='flex flex-row justify-end'>
+		    <button type="button" className='btn-rised fa fa-arrow-right color-white' onClick={() => setIsCollapsed(!isCollapsed)}></button>
+		  </li>
+		  }
+                    <AsideBarItem path="/profile" imageSrc={userIcon} alt='go to perfil' isMenuCollapse={isCollapsed} />
+                    
+                    <AsideBarItem path='home' imageSrc={home} alt='home link' description='Pagina Inicial' style={fade} isMenuCollapse={isCollapsed}/>
+                    <AsideBarItem path="messenger" imageSrc={messenger} alt='messenger link' description='Mensagem' style={fade} isMenuCollapse={isCollapsed}/>
+                        
+                    <AsideBarItem path="notification" imageSrc={notification} alt='notification link' description='Notificações' style={fade} isMenuCollapse={isCollapsed}/>
+                        
+                    <AsideBarItem path="help" imageSrc={help} alt='help link' description='Ajuda' style={fade} isMenuCollapse={isCollapsed}/>
+                    <AsideBarItem path="about" imageSrc={about} alt='about link' description='Sobre nós' style={fade} isMenuCollapse={isCollapsed}/>
                 </ul>
 
                 <div className='footer flex flex-column align-center justify-end'>
                     <div className='footer-content-1'>
-                        <button className='btn txt-white flex flex-row' onClick={ButtonClick}>
-                        <img src={logoutIcon} alt="logout button" /> <span>Terminar sessao</span>
+                        <button className='btn color-white fs-small flex flex-row nowrap' onClick={ButtonClick}>
+			  <img src={logoutIcon} alt="logout button" /> 
+			  <AnimatedSpan style={fade2} content='Terminar sessao' />
                         </button>
                     </div>
-                    <div className='flex flex-column footer-content-1' >
+		  <animated.div className='flex flex-column footer-content-1' style={{...fade}} >
                         <p>Partilhar com:</p>
                         <div className='flex flex-row flex-center fs-medium'>
                         <i className='fa fa-facebook'></i>
@@ -93,11 +129,11 @@ function AsideBar({ user }: any) {
                         <i className='fa fa-whatsapp'></i>
                         <i className='fa fa-instagram'></i>
                         </div>
-                    </div>
+                    </animated.div>
                 </div>
             </div>
 
-        </aside>
+        </animated.aside>
     )
 }
 
