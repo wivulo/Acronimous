@@ -29,11 +29,14 @@ function AsideBarItem({ path, imageSrc, alt, description, style, isMenuCollapse 
     let classes = [
       'asideBar-item flex',
       'flex flex-row nowrap',
+      'icon asideBarIcon'
     ]
 
     if(!description || isMenuCollapse) {
       classes = classes.map(item => item = item.concat(' flex-center'))
     }
+   
+    if(!description) classes[2] = classes[2].concat(' profileLink')
 
     function eventHandler() {
         isClick = true;
@@ -44,11 +47,11 @@ function AsideBarItem({ path, imageSrc, alt, description, style, isMenuCollapse 
     return (
         <li className={classes[0]} onClick={eventHandler}>
             <Link to={path}>
-	      <div className={classes[1]}>
-		<img className={!description? 'icon asideBarIcon profileLink':'icon asideBarIcon'} src={imageSrc} alt={alt}/>
-		{description &&  <AnimatedSpan style={style} content={description} />}
-	      </div>
-	    </Link>
+	            <div className={classes[1]}>
+		            <img className={classes[2]} src={imageSrc} alt={alt}/>
+		            {description &&  <AnimatedSpan style={style} content={description} />}
+	            </div>
+	        </Link>
         </li>
     )
 }
@@ -57,9 +60,18 @@ const AnimatedSpan = ({style, content}: any) => {
   return <animated.span className='nobreak' style={{...style}}>{content}</animated.span>
 }
 
-function AsideBar({ user }: any) {
+const AnimatedAside = ({width, style, children}:any) => {
+    const classes = 'asideNavBar bg-darkblue-palette'
+
+    if (width <= 850) {
+        return <animated.aside className={classes} style={{...style}}>{children}</animated.aside>
+    } else {
+        return <aside className={classes}>{children}</aside>
+    }
+}
+
+function AsideBar() {
     const navigate = useNavigate();
-    const asideRef = useRef<HTMLBaseElement>(null)
     const [width, setWidth] = useState<number>(window.innerWidth)
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
 
@@ -71,11 +83,11 @@ function AsideBar({ user }: any) {
 	}
 	 
       window.addEventListener('resize', resize)
-    }, [])
+    }, [width])
     
     const ButtonClick = () => {
-	localStorage.removeItem("user");
-	navigate("/login")
+	    localStorage.removeItem("user");
+	    navigate("/login")
     }
 
     const slideAnimationProps = useSpring({
@@ -95,15 +107,15 @@ function AsideBar({ user }: any) {
     })
 
     return (
-      <animated.aside className='asideNavBar bg-darkblue-palette'  style={{...slideAnimationProps}} ref={asideRef}>
+      <AnimatedAside width={width} style={slideAnimationProps}>
             <div className='asideNavBar-content flex flex-column flex-h-center'>
                 <ul className='menu'>
-		  { (width <= 850) &&
-		  <li className='flex flex-row justify-end'>
-		    <button type="button" className='btn-rised fa fa-arrow-right color-white' onClick={() => setIsCollapsed(!isCollapsed)}></button>
-		  </li>
-		  }
-                    <AsideBarItem path="/profile" imageSrc={userIcon} alt='go to perfil' isMenuCollapse={isCollapsed} />
+		            { (width <= 850) &&
+		                <li className='flex flex-row justify-end'>
+		                    <button type="button" className='btn-rised fa fa-arrow-right color-white' onClick={() => setIsCollapsed(!isCollapsed)}></button>
+		                </li>
+		            }
+                    <AsideBarItem path="/profile" imageSrc={userIcon} alt='go to profile' isMenuCollapse={isCollapsed} />
                     
                     <AsideBarItem path='home' imageSrc={home} alt='home link' description='Pagina Inicial' style={fade} isMenuCollapse={isCollapsed}/>
                     <AsideBarItem path="messenger" imageSrc={messenger} alt='messenger link' description='Mensagem' style={fade} isMenuCollapse={isCollapsed}/>
@@ -117,23 +129,24 @@ function AsideBar({ user }: any) {
                 <div className='footer flex flex-column align-center justify-end'>
                     <div className='footer-content-1'>
                         <button className='btn color-white fs-small flex flex-row nowrap' onClick={ButtonClick}>
-			  <img src={logoutIcon} alt="logout button" /> 
-			  <AnimatedSpan style={fade2} content='Terminar sessao' />
+			                <img src={logoutIcon} alt="logout button" /> 
+			                <AnimatedSpan style={fade2} content='Terminar sessao' />
                         </button>
                     </div>
-		  <animated.div className='flex flex-column footer-content-1' style={{...fade}} >
+		            
+                    <animated.div className='flex flex-column footer-content-1' style={{...fade}} >
                         <p>Partilhar com:</p>
                         <div className='flex flex-row flex-center fs-medium'>
-                        <i className='fa fa-facebook'></i>
-                        <i className='fa fa-twitter'></i>
-                        <i className='fa fa-whatsapp'></i>
-                        <i className='fa fa-instagram'></i>
+                            <i className='fa fa-facebook'></i>
+                            <i className='fa fa-twitter'></i>
+                            <i className='fa fa-whatsapp'></i>
+                            <i className='fa fa-instagram'></i>
                         </div>
                     </animated.div>
                 </div>
             </div>
 
-        </animated.aside>
+        </AnimatedAside>
     )
 }
 
@@ -141,7 +154,7 @@ export default function Dashboard({ user } : any) {
 
     return (
         <div className="sheet sheet-1 flex flex-center" id="dashboard">
-            <AsideBar user={user.username} />
+            <AsideBar />
             <section className='a-section dash-section'>
                 <Routes>
                     <Route element={<Home />} path='home' />
@@ -150,6 +163,7 @@ export default function Dashboard({ user } : any) {
                     <Route element={<NotFound />} path="*" />
                 </Routes>
             </section>
+
             <aside className='rightAsideBar flex flex-column justify-end'>
                 <div className='forum-item'>
                     <figure>

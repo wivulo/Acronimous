@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import './login.css';
 import enterIcon from '../../assets/image/login_rounded_right_48px.png';
-import * as React from 'react';
 
 interface iLogin {
 	users: any;
@@ -10,10 +9,10 @@ interface iLogin {
 	onLoading:Function;
 }
 
-
 export default function Login({ users, onLogin, onLoading }: iLogin) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [message, setMessage] = useState('')
 	const navigate = useNavigate();
 
 	function validateForm() {
@@ -28,6 +27,7 @@ export default function Login({ users, onLogin, onLoading }: iLogin) {
 			onLoading(true);
 			setTimeout(async () => {
 				if (user.username && user.password) {
+					setMessage('')
 					onLogin(user);
 					
 					let checkUser = JSON.parse(localStorage.getItem("user")!);
@@ -40,12 +40,12 @@ export default function Login({ users, onLogin, onLoading }: iLogin) {
 
 					navigate('/'+user.username)
 				} else {
-					console.log('username or password wrong!')
+					setMessage('username or password wrong!')
 				}
 				onLoading(false)
 			}, 5000);
 		} else {
-			console.log('username or password wrong!')
+			setMessage('username or password wrong!')
 		}
 	}
 
@@ -78,7 +78,8 @@ export default function Login({ users, onLogin, onLoading }: iLogin) {
 
 							<div className="form-group showError flex flex-center"></div>
 
-							<div className="form-group flex flex-center">
+							<div className="form-group flex flex-column flex-center">
+								{message && <span className='color-red'>{message}</span>}
 								<button type="submit" className="btn btn-radius fs-large" id="btn-login"
 									disabled={!validateForm()}>
 										<img src={enterIcon} alt="login button" />

@@ -75,7 +75,7 @@ function App() {
             <Route element={<NotFound />} path="*" />
           </Routes>
         </Section>
-        <Loader loading={isLoading} />
+        <Loader isLoading={isLoading} />
         <Outlet />
       </div>
     </BrowserRouter>

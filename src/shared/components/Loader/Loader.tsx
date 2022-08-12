@@ -1,8 +1,16 @@
 import './Loader.css'
+import {useSpring, animated} from 'react-spring'
 
-export default function Loader({ loading }: any) {
+export default function Loader({ isLoading }: any) {
+alert(isLoading)
+  let showLoaderAnim = useSpring({
+    display: isLoading ? 'block' : 'none',
+    opacity: isLoading ? 1 : 0,
+    config: {mass: 1, tension: 150,friction: 10}
+  })
+
     return (
-      <div id="loader" className={(loading) ? 'isLoading' : '' }>
+      <animated.div id="loader" style={{...showLoaderAnim}}>
         <div className="flex flex-column flex-center">
           <div id="loader-information" >
             <p> A carregar... </p>
@@ -19,6 +27,6 @@ export default function Loader({ loading }: any) {
   
           </div>
         </div>
-      </div>
+      </animated.div>
     )
   }
