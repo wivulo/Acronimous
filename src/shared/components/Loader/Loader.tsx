@@ -2,7 +2,7 @@ import './Loader.css'
 import {useSpring, animated} from 'react-spring'
 
 export default function Loader({ isLoading }: any) {
-alert(isLoading)
+
   let showLoaderAnim = useSpring({
     display: isLoading ? 'block' : 'none',
     opacity: isLoading ? 1 : 0,

@@ -10,7 +10,6 @@ import Loader from "./shared/components/Loader/Loader";
 import Dashboard from "./dashboard/Dashboard";
 import NotFound from "./shared/components/notFound";
 
-
 function Header() {
   return (
     <header className="a-header a-header-1">
