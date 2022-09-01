@@ -1,6 +1,6 @@
 interface iProp{
     item?: any;
-    tb?: number;
+    tb?: string;
 }
 
 interface iUser{
@@ -21,42 +21,82 @@ interface iDb{
     users: iUser[];
     library: iLibrary[];
     forum: any[];
-    add: any;
-    delete: any;
-    search: any;
-    lastId: any;
 }
 
-const lastId =  (tbIndex: number) => {
-    if(tbIndex in data){
-        let id = 0;
-        data[tbIndex].map(item => id += item.id)
-                
-        return id
+const config = {
+    method: 'GET',
+    headers: {
+        accept: 'application/json'
     }
 }
 
-const getData = () => {}
+/*
+const lastId =  (uri: string) => {
+    return new Promise<number>((resolve, reject) => {
+        fetch('/'+uri, config)
+        .then(res => res.json())
+        .then((data: any[]) => {
+            let id = 0
 
-const addData = ({item, tb = 0}: iProp) => {
-    let lastid = db().lastId(tb) || 0
+            for(let _tb of Object.keys(data[0])){
+                if(tb === _tb){
+                    data[0][_tb].map((item: any) => id += item.id)
 
-    if(item){
-        item.id = lastid + 1;
+                    resolve(id)
+                }else{
+                    resolve(0)
+                }
+            }
+        })
+        .catch(e => reject(e))
+    })
 
-        let isAdd = data[tb].push(item)
-        if(isAdd) return item
-    }
+}*/
+
+const getData = ({uri,tb}: any) => {
+   return new Promise<any>((resolve, reject) => {
+        fetch('/'+uri, config)
+        .then(res => res.json())
+        .then((data: any[]) => {
+           // resolve(data[0])
+            for(let _tb of Object.keys(data[0])){
+                if(tb === _tb)
+                    resolve({data: data[0][_tb], status: true})
+                else
+                    resolve({status: false})
+            }
+        })
+        .catch(e => reject(e))
+    }) 
 }
 
-const searchData = ({item, tb = 0}: iProp) => {
-    let id = Number(item);
 
-    if(id){
-        for(let i of data[tb]){
-            if(id === i.id) return i
+const addData = ({item, tb}: iProp) => {
+   return new Promise<any>((resolve, reject) => {
+       if(item){
+           fetch('/addData', {
+               method: 'POST',
+               body: item
+           })
+          .then(response => response.json())
+          .then(data => resolve(data))
+          .catch(error => reject(error))
+        }else{
+            reject({message: 'corpo vazio!'})
         }
-    }
+   }) 
 }
 
-export {getData, addData, searchData}
+
+const getDataById = ({item, tb}: iProp) => {
+    return new Promise<any>((resolve, reject) => {
+        
+        let id = Number(item);
+
+        if(id){
+        
+        }
+    })
+}
+
+export {getData}

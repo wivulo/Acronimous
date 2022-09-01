@@ -9,6 +9,12 @@ import { useState, useEffect } from "react";
 import Loader from "./shared/components/Loader/Loader";
 import Dashboard from "./dashboard/Dashboard";
 import NotFound from "./shared/components/notFound";
+import {getData} from './shared/services/http'
+
+(async ()=> {
+  let data = await getData('users') || {}
+  alert(JSON.stringify(data))
+})()
 
 function Header() {
   return (
